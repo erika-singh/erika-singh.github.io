@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erika Singh — About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; min-height: 100vh;
+      background: #081018;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: relative;
+      z-index: 10;
+      background: #000;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 18px 60px;
+    }
+    nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.13em;
+      color: #fff;
+      text-decoration: underline;
+      text-transform: uppercase;
+    }
+    nav a.active {
+      color: #5dd5d5;
+      text-decoration: underline;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .page {
+      position: relative;
+      min-height: calc(100vh - 57px);
+      background: linear-gradient(120deg, #0a1422 0%, #0a1422 38%, #0c3828 65%, #0a2a1e 100%);
+      display: flex;
+      overflow: hidden;
+    }
+
+
+
+    /* ── LEFT COPY ── */
+    .copy {
+      position: relative;
+      z-index: 2;
+      width: 46%;
+      padding: 70px 40px 80px 80px;
+      flex-shrink: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 96px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 70px;
+    }
+
+    .story { margin-bottom: 26px; }
+    .story strong {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .story p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: #c8c0b4;
+      max-width: 380px;
+    }
+
+    .tagline {
+      margin-top: 48px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #c8c0b4;
+      max-width: 390px;
+    }
+    .tagline strong { color: #fff; font-weight: 700; }
+
+    /* ── RIGHT: POLAROID AREA ── */
+    .polaroid-area {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
+    /* Each polaroid: string from very top, card hanging below */
+    .pol {
+      position: absolute;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* The string — goes from y=0 down to the card */
+    .string {
+      width: 1px;
+      background: rgba(255,255,255,0.28);
+      flex-shrink: 0;
+    }
+
+    /* ── CARD FLIP ── */
+    .card {
+      flex-shrink: 0;
+      perspective: 900px;
+    }
+
+    .card-inner {
+      width: 100%; height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pol:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 2px;
+    }
+
+    /* FRONT = photo with white polaroid border */
+    .front {
+      background: #fff;
+      padding: 8px 8px 32px 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .front img {
+      width: 100%;
+      flex: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .front .ph {
+      width: 100%;
+      flex: 1;
+      background: #b8b0a0;
+    }
+
+    /* BACK = off-white card with uppercase label */
+    .back {
+      background: #e2ddd5;
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .back span {
+      font-family: 'Space Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+      line-height: 1.65;
+      color: #111;
+    }
+
+    /* ── INDIVIDUAL POSITIONS & SIZES ──
+       Based exactly on the mockup:
+       p1 = Now Presenting: left, very long string, card lower-center
+       p2 = Katniss in Training: center, medium string, taller card
+       p3 = Hello World: right-ish, long string, card lower-right
+       p4 = A Camera and a Dream: far right, short string, card upper-right
+    */
+    .p1 { left: 55px;  }
+    .p1 .string { height: 395px; }
+    .p1 .card   { width: 148px; height: 258px; }
+
+    .p2 { left: 235px; }
+    .p2 .string { height: 155px; }
+    .p2 .card   { width: 148px; height: 290px; }
+
+    .p3 { left: 365px; }
+    .p3 .string { height: 440px; }
+    .p3 .card   { width: 148px; height: 258px; }
+
+    .p4 { left: 510px; }
+    .p4 .string { height: 95px; }
+    .p4 .card   { width: 148px; height: 258px; }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#">HOME</a>
+    <a href="#" class="active">ABOUT</a>
+    <a href="#">PROJECTS</a>
+    <a href="#">CONTACT INFO</a>
+  </nav>
+
+  <div class="page">
+
+
+    <!-- LEFT TEXT -->
+    <div class="copy">
+      <h1>ERIKA SINGH</h1>
+
+      <div class="story">
+        <strong>Started with storytelling</strong>
+        <p>Campus radio host for two years, learning how to capture attention.</p>
+      </div>
+
+      <div class="story">
+        <strong>Learned to solve problems</strong>
+        <p>Consulting taught me to listen deeply and turn ideas into value.</p>
+      </div>
+
+      <div class="story">
+        <strong>Now building digitally</strong>
+        <p>At RBC, I translated user needs into products with impact.</p>
+      </div>
+
+      <p class="tagline">
+        Across every role, one thing has stayed constant:
+        <strong>I love understanding people and creating work that resonates with them.</strong>
+      </p>
+    </div>
+
+    <!-- RIGHT POLAROIDS -->
+    <div class="polaroid-area">
+
+      <!-- P1: Now Presenting -->
+      <div class="pol p1">
+        <div class="string"></div>
+        <div class="card">
+          <div class="card-inner">
+            <div class="face front">
+              <!-- <img src="images/presenting.jpg" alt="Presenting at Smith School" /> -->
+              <div class="ph"></div>
+            </div>
+            <div class="face back"><span>NOW<br>PRESENTING</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2: Katniss in Training -->
+      <div class="pol p2">
+        <div class="string"></div>
+        <div class="card">
+          <div class="card-inner">
+            <div class="face front">
+              <!-- <img src="images/archery.jpg" alt="Archery" /> -->
+              <div class="ph"></div>
+            </div>
+            <div class="face back"><span>KATNISS<br>IN<br>TRAINING</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3: Hello World -->
+      <div class="pol p3">
+        <div class="string"></div>
+        <div class="card">
+          <div class="card-inner">
+            <div class="face front">
+              <!-- <img src="images/hello.jpg" alt="Hello World" /> -->
+              <div class="ph"></div>
+            </div>
+            <div class="face back"><span>HELLO<br>WORLD</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4: A Camera and a Dream -->
+      <div class="pol p4">
+        <div class="string"></div>
+        <div class="card">
+          <div class="card-inner">
+            <div class="face front">
+              <!-- <img src="images/camera.jpg" alt="A Camera and a Dream" /> -->
+              <div class="ph"></div>
+            </div>
+            <div class="face back"><span>A CAMERA<br>AND A<br>DREAM</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</body>
+</html>
