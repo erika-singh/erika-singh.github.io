@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erika Singh Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #030303;
+      --white: #ffffff;
+      --grey: #d9dedc;
+      --blue: #5f91de;
+      --blue-deep: #1554c5;
+      --pink-light: #f3b5db;
+      --pink: #e050b3;
+      --pink-deep: #b8228b;
+      --green-light: #8bd4ad;
+      --green: #66b98f;
+      --green-deep: #2f7253;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Inter", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      width: min(100%, 430px);
+      min-height: 3060px;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--black);
+      border-left: 1px solid rgba(255,255,255,.04);
+      border-right: 1px solid rgba(255,255,255,.04);
+    }
+
+    .grain {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      opacity: .12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 12px 12px;
+      mix-blend-mode: overlay;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(.2px);
+      z-index: 0;
+    }
+
+    .blob-pink-top {
+      width: 260px;
+      height: 260px;
+      top: 38px;
+      right: -112px;
+      background: radial-gradient(circle at 38% 42%, var(--pink-light) 0%, var(--pink) 55%, var(--pink-deep) 100%);
+    }
+
+    .blob-green-hero {
+      width: 315px;
+      height: 315px;
+      top: 680px;
+      left: -62px;
+      background: radial-gradient(circle at 50% 32%, var(--green-light) 0%, var(--green) 50%, var(--green-deep) 100%);
+    }
+
+    .blob-blue-mid {
+      width: 365px;
+      height: 365px;
+      top: 1245px;
+      left: -250px;
+      background: radial-gradient(circle at 65% 45%, var(--blue) 0%, var(--blue-deep) 72%);
+    }
+
+    .blob-pink-mid {
+      width: 345px;
+      height: 345px;
+      top: 1800px;
+      right: -186px;
+      background: radial-gradient(circle at 32% 38%, var(--pink-light) 0%, var(--pink) 56%, var(--pink-deep) 100%);
+    }
+
+    .blob-green-low {
+      width: 315px;
+      height: 315px;
+      top: 2230px;
+      left: -205px;
+      background: radial-gradient(circle at 62% 42%, var(--green-light) 0%, var(--green) 52%, var(--green-deep) 100%);
+    }
+
+    .blob-blue-low {
+      width: 300px;
+      height: 300px;
+      top: 2504px;
+      right: -135px;
+      background: radial-gradient(circle at 38% 42%, #8eb7f1 0%, var(--blue) 45%, var(--blue-deep) 100%);
+    }
+
+    .blob-pink-bottom {
+      width: 305px;
+      height: 305px;
+      top: 2845px;
+      left: -165px;
+      background: radial-gradient(circle at 64% 35%, var(--pink-light) 0%, var(--pink) 58%, var(--pink-deep) 100%);
+    }
+
+    header,
+    section,
+    nav {
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px 0;
+      font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+      letter-spacing: .06em;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .nav-line {
+      width: 27px;
+      height: 1px;
+      background: var(--white);
+      margin-top: 4px;
+    }
+
+    .hero {
+      height: 690px;
+      padding: 42px 16px 0;
+    }
+
+    .hero-copy {
+      width: 190px;
+    }
+
+    .hero h1 {
+      font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+      font-size: 27px;
+      line-height: .9;
+      letter-spacing: .03em;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .hero p {
+      width: 178px;
+      font-size: 8px;
+      line-height: 1.45;
+      color: rgba(255,255,255,.9);
+      margin-bottom: 8px;
+    }
+
+    .polaroid {
+      position: absolute;
+      top: 96px;
+      right: 38px;
+      width: 122px;
+      height: 157px;
+      background: var(--white);
+      padding: 9px 9px 31px;
+      box-shadow: 0 20px 42px rgba(0,0,0,.28);
+    }
+
+    .portrait {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #73543d, #d7b48d 46%, #2f2a25 47%, #a65b91);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .portrait::before {
+      content: "";
+      width: 42px;
+      height: 58px;
+      border-radius: 48% 48% 44% 44%;
+      background: #27201f;
+      box-shadow: 0 16px 0 22px #4f3527;
+      transform: translateY(12px);
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 267px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,.75);
+    }
+
+    .hanging {
+      position: absolute;
+      top: 267px;
+      width: 1px;
+      background: rgba(255,255,255,.85);
+    }
+
+    .hanging.card-1 { height: 150px; left: 76px; }
+    .hanging.card-2 { height: 104px; left: 153px; }
+    .hanging.card-3 { height: 231px; left: 228px; }
+    .hanging.card-4 { height: 114px; left: 288px; }
+    .hanging.card-5 { height: 189px; left: 348px; }
+
+    .mini-card {
+      position: absolute;
+      border: 4px solid var(--black);
+      background: var(--grey);
+      box-shadow: 0 0 0 2px var(--white);
+    }
+
+    .mini-card span {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--black);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 10px;
+      letter-spacing: .03em;
+      text-align: center;
+    }
+
+    .mini-1 { width: 48px; height: 89px; top: 358px; left: 53px; }
+    .mini-2 { width: 51px; height: 92px; top: 320px; left: 126px; }
+    .mini-3 { width: 51px; height: 78px; top: 475px; left: 202px; }
+    .mini-4 { width: 50px; height: 90px; top: 376px; left: 263px; background: transparent; }
+    .mini-5 { width: 49px; height: 78px; top: 452px; left: 324px; }
+    .mini-6 { width: 48px; height: 78px; top: 408px; right: 16px; }
+
+    .section-title {
+      font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+      line-height: .9;
+      color: var(--white);
+      font-size: 19px;
+    }
+
+    .projects-one {
+      height: 565px;
+      padding: 0 14px;
+    }
+
+    .projects-one .eyebrow {
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: .04em;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .project-title-one {
+      width: 174px;
+      font-size: 22px;
+      margin-bottom: 28px;
+    }
+
+    .block {
+      position: absolute;
+      background: var(--grey);
+      border: 4px solid var(--black);
+    }
+
+    .p1-left { width: 116px; height: 159px; left: 13px; top: 104px; }
+    .p1-mid { width: 126px; height: 184px; left: 144px; top: 104px; }
+    .p1-right { width: 116px; height: 159px; right: 16px; top: 104px; }
+
+    .digital {
+      height: 690px;
+      padding: 0 14px;
+    }
+
+    .digital-title {
+      width: 212px;
+      margin-left: auto;
+      text-align: right;
+      font-size: 21px;
+      margin-bottom: 17px;
+    }
+
+    .digital-card-left { width: 192px; height: 163px; left: 13px; top: 50px; }
+    .digital-card-right { width: 198px; height: 163px; right: 0; top: 50px; }
+    .digital-card-wide { width: calc(100% - 24px); height: 230px; left: 12px; top: 236px; }
+
+    .workshop {
+      height: 510px;
+      padding: 0 14px;
+    }
+
+    .workshop .year {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 12px;
+      letter-spacing: .04em;
+      margin-bottom: 4px;
+    }
+
+    .workshop-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .workshop-left { width: 126px; height: 180px; left: 13px; top: 63px; }
+    .workshop-right { width: 287px; height: 180px; right: 0; top: 63px; }
+
+    .skills {
+      height: 465px;
+      padding: 0 14px;
+    }
+
+    .skills-title {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .skills-main { width: 140px; height: 160px; left: 13px; top: 44px; }
+
+    .skill-square,
+    .skill-tall {
+      position: absolute;
+      background: var(--grey);
+      border: 4px solid var(--black);
+    }
+
+    .sq1 { width: 39px; height: 52px; left: 201px; top: 44px; }
+    .sq2 { width: 39px; height: 52px; left: 252px; top: 44px; }
+    .sq3 { width: 39px; height: 52px; left: 303px; top: 44px; }
+    .sq4 { width: 39px; height: 52px; left: 354px; top: 44px; }
+
+    .sq5 { width: 39px; height: 52px; left: 201px; top: 110px; }
+    .sq6 { width: 39px; height: 52px; left: 252px; top: 110px; }
+    .sq7 { width: 39px; height: 52px; left: 303px; top: 110px; }
+    .sq8 { width: 39px; height: 52px; left: 354px; top: 110px; }
+
+    .contact {
+      height: 330px;
+      padding: 0 14px;
+    }
+
+    .contact-title {
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+
+    .contact-card {
+      width: calc(100% - 24px);
+      height: 170px;
+      left: 12px;
+      top: 45px;
+    }
+
+    .footer-mark {
+      position: absolute;
+      bottom: 16px;
+      right: 17px;
+      z-index: 2;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 10px;
+      letter-spacing: .05em;
+      opacity: .8;
+    }
+
+    @media (min-width: 760px) {
+      body {
+        background: #101010;
+      }
+
+      .page {
+        transform-origin: top center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="blob blob-pink-top"></div>
+    <div class="blob blob-green-hero"></div>
+    <div class="blob blob-blue-mid"></div>
+    <div class="blob blob-pink-mid"></div>
+    <div class="blob blob-green-low"></div>
+    <div class="blob blob-blue-low"></div>
+    <div class="blob blob-pink-bottom"></div>
+
+    <nav class="nav">
+      <div class="nav-line"></div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <h1>Erika Singh</h1>
+        <p>Digital analyst, product thinker, and creative storyteller building thoughtful experiences at the intersection of data, design, and strategy.</p>
+        <p>Currently studying Commerce at Queen's University, with work across analytics, consulting, product, and editorial projects.</p>
+      </div>
+
+      <div class="polaroid">
+        <div class="portrait" aria-label="Portrait placeholder"></div>
+      </div>
+
+      <div class="timeline-line"></div>
+      <div class="hanging card-1"></div>
+      <div class="hanging card-2"></div>
+      <div class="hanging card-3"></div>
+      <div class="hanging card-4"></div>
+      <div class="hanging card-5"></div>
+
+      <div class="mini-card mini-1"><span>Analytics</span></div>
+      <div class="mini-card mini-2"><span>RBC</span></div>
+      <div class="mini-card mini-3"><span>QWIL</span></div>
+      <div class="mini-card mini-4"></div>
+      <div class="mini-card mini-5"></div>
+      <div class="mini-card mini-6"></div>
+    </header>
+
+    <section class="projects-one" id="projects">
+      <p class="eyebrow">Hi I am Erika, nice to meet you</p>
+      <h2 class="section-title project-title-one">AI triage tool for mental health clinics</h2>
+      <div class="block p1-left"></div>
+      <div class="block p1-mid"></div>
+      <div class="block p1-right"></div>
+    </section>
+
+    <section class="digital">
+      <h2 class="section-title digital-title">Digital wardrobe for sustainability</h2>
+      <div class="block digital-card-left"></div>
+      <div class="block digital-card-right"></div>
+      <div class="block digital-card-wide"></div>
+    </section>
+
+    <section class="workshop">
+      <p class="year">2023</p>
+      <h2 class="section-title workshop-title">AI education workshop</h2>
+      <div class="block workshop-left"></div>
+      <div class="block workshop-right"></div>
+    </section>
+
+    <section class="skills" id="skills">
+      <h2 class="section-title skills-title">Career journey and skills</h2>
+      <div class="block skills-main"></div>
+      <div class="skill-square sq1"></div>
+      <div class="skill-square sq2"></div>
+      <div class="skill-square sq3"></div>
+      <div class="skill-square sq4"></div>
+      <div class="skill-square sq5"></div>
+      <div class="skill-square sq6"></div>
+      <div class="skill-square sq7"></div>
+      <div class="skill-square sq8"></div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2 class="section-title contact-title">Lets talk! :)</h2>
+      <div class="block contact-card"></div>
+    </section>
+
+    <div class="footer-mark">Version 2</div>
+    <div class="grain"></div>
+  </main>
+</body>
+</html>
