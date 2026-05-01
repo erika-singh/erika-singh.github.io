@@ -4,20 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Erika Singh</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F5F2EB;
-    --dark: #1a1a18;
-    --pink: #E8A0B4;
-    --pink-light: #F2C8D5;
-    --pink-deep: #C4607A;
-    --teal: #4AAFA0;
-    --teal-light: #9DD4CC;
-    --purple: #7B6FAA;
-    --purple-light: #C5BEDE;
-    --text-muted: #6b6b67;
-    --border: rgba(26,26,24,0.12);
+   --cream: #030303;
+--dark: #FFFFFF;
+--soft-grey: #D9DEDC;
+
+--blue: #5F91DE;
+--blue-deep: #1554C5;
+
+--pink: #E050B3;
+--pink-light: #F3B5DB;
+--pink-deep: #B8228B;
+
+--green: #66B98F;
+--green-light: #8BD4AD;
+--green-deep: #2F7253;
+
+--text-muted: rgba(255,255,255,0.72);
+--border: rgba(255,255,255,0.22);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,7 +54,7 @@
   }
 
   nav .logo {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -143,7 +149,7 @@
   }
 
   .hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: clamp(3.5rem, 6vw, 5.5rem);
     font-weight: 700;
     line-height: 1.0;
@@ -174,7 +180,7 @@
   }
 
   .journey-item h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
@@ -204,7 +210,7 @@
 
   .hero-right {
     position: relative;
-    background: var(--pink-light);
+    background: radial-gradient(circle at 20% 20%, #F3B5DB 0%, #E050B3 40%, #B8228B 100%);
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -219,7 +225,7 @@
   .blob-1 {
     width: 350px;
     height: 350px;
-    background: var(--teal-light);
+    background: radial-gradient(circle,#5F91DE 0%,#1554C5 70%);
     top: -60px;
     right: -80px;
     opacity: 0.6;
@@ -229,7 +235,7 @@
   .blob-2 {
     width: 280px;
     height: 280px;
-    background: var(--purple-light);
+    background: radial-gradient(circle,#8BD4AD 0%,#66B98F 55%,#2F7253 100%);
     bottom: 50px;
     left: -50px;
     opacity: 0.5;
@@ -255,7 +261,10 @@
   }
 
   .polaroid:nth-child(even) { transform: rotate(1.5deg); margin-top: 20px; }
-  .polaroid:hover { transform: rotate(0) scale(1.03); }
+  .polaroid:hover,
+.polaroid:nth-child(even):hover {
+  transform: rotate(0deg) scale(1.04) translateY(-6px) !important;
+}
 
   .polaroid-img {
     width: 100%;
@@ -295,7 +304,7 @@
   }
 
   .hover-section h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     color: var(--cream);
@@ -347,7 +356,7 @@
   }
 
   .section-header h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 700;
   }
@@ -387,7 +396,7 @@
   }
 
   .work-card h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: 1.3rem;
     font-weight: 700;
     line-height: 1.3;
@@ -446,7 +455,7 @@
   }
 
   .case-study h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -611,7 +620,7 @@
   }
 
   .cj-item h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.3rem;
@@ -659,7 +668,7 @@
   }
 
   .donut-center span:first-child {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: 1.5rem;
     font-weight: 700;
   }
@@ -719,7 +728,7 @@
   }
 
   .contact h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 700;
     color: var(--cream);
