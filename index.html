@@ -1,4 +1,3 @@
-cat > /home/claude/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +16,15 @@ cat > /home/claude/index.html << 'HTMLEOF'
     --slate: #3D4A52;
     --slate-mid: #6B7A84;
     --slate-soft: #A4B0B8;
-    --green: #3D8C6E;
-    --green-light: #DCF0E8;
-    --green-mid: #8FCBB5;
-    --green-dark: #276650;
-    --teal: #2C8FA0;
-    --teal-light: #D8F0F4;
+    /* Emerald — rich, jewel-toned */
+    --green: #1A7A4A;
+    --green-light: #D6EEE2;
+    --green-mid: #6DB895;
+    --green-dark: #0F5233;
+    --green-vivid: #1E8F56;
+    /* Teal accent */
+    --teal: #0F6B7A;
+    --teal-light: #C8E8EE;
     --ink: #1C2426;
     --border: rgba(60,74,82,0.12);
     --border-mid: rgba(60,74,82,0.22);
@@ -50,22 +52,22 @@ cat > /home/claude/index.html << 'HTMLEOF'
   .mobile-menu a:hover { color: var(--green); }
   .mobile-close { position: absolute; top: 1.2rem; right: 5vw; background: none; border: none; font-size: 1.4rem; color: var(--ink); cursor: pointer; }
 
-  /* HERO — two cols: text left, photo right, no extra gutters */
-  #hero {
+  /* MERGED INTRO — left: name/quote/photo, right: pillars */
+  #intro {
     min-height: 100svh;
-    padding: calc(var(--nav-h) + 8vh) 5vw 8vh;
+    padding: calc(var(--nav-h) + 7vh) 5vw 7vh;
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
     background: var(--off-white);
   }
+  .intro-left { display: flex; flex-direction: column; position: sticky; top: calc(var(--nav-h) + 3rem); }
   .hero-kicker { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--green); margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.8rem; }
   .hero-kicker::before { content: ''; width: 28px; height: 1px; background: var(--green); display: block; }
-  h1 { font-family: var(--font-head); font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.75rem; }
-  .hero-body { font-size: 1rem; color: var(--slate-mid); max-width: 480px; line-height: 1.8; margin-bottom: 2.5rem; }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-  .hero-tagline { font-size: 0.88rem; color: var(--slate-mid); line-height: 1.75; max-width: 400px; padding: 1.1rem 1.25rem; background: var(--green-light); border-left: 2px solid var(--green); border-radius: 0 3px 3px 0; }
+  h1 { font-family: var(--font-head); font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
+  .hero-body { font-size: 1rem; color: var(--slate-mid); line-height: 1.8; margin-bottom: 2rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
 
   .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1.6rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none; }
   .btn-primary { background: var(--green); color: #fff; }
@@ -73,26 +75,34 @@ cat > /home/claude/index.html << 'HTMLEOF'
   .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border-mid); }
   .btn-outline:hover { border-color: var(--slate); }
 
-  .hero-photo-col { display: flex; align-items: center; justify-content: center; }
-  .hero-photo-frame { width: 280px; aspect-ratio: 3/4; border-radius: 6px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem; }
-  .initials-circle { width: 80px; height: 80px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--green-dark); }
+  .hero-photo-frame {
+    width: 100%; max-width: 280px;
+    aspect-ratio: 3/4; border-radius: 6px; overflow: hidden;
+    background: var(--green-light); border: 1px solid var(--green-mid);
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem;
+  }
+  .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .initials-circle { width: 80px; height: 80px; border-radius: 50%; background: var(--green-light); border: 2px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--green-dark); }
   .photo-hint { font-size: 0.75rem; color: var(--slate-soft); }
 
-  /* SECTION BASE */
-  section { padding: 6rem 5vw; }
-  .section-kicker { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
-  .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--green); display: block; }
-  h2 { font-family: var(--font-head); font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 1rem; }
-  .section-intro { font-size: 1rem; color: var(--slate-mid); max-width: 560px; line-height: 1.8; margin-bottom: 3rem; }
-
-  /* ABOUT — pillars only, no side card */
-  #about { background: var(--surface); }
-  .pillars { display: flex; flex-direction: column; max-width: 680px; }
+  /* Right col: section label + pillars */
+  .intro-right { display: flex; flex-direction: column; padding-top: 0.5rem; }
+  .intro-right-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .intro-right-label::before { content: ''; width: 20px; height: 1px; background: var(--green); display: block; }
+  .intro-right-heading { font-family: var(--font-head); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 2rem; }
+  .pillars { display: flex; flex-direction: column; }
   .pillar { display: grid; grid-template-columns: 36px 1fr; gap: 1.25rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
   .pillar:last-child { border-bottom: none; }
   .pillar-num { font-family: var(--font-head); font-size: 0.78rem; font-weight: 600; color: var(--green); padding-top: 2px; }
   .pillar h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--ink); }
   .pillar p { font-size: 0.9rem; color: var(--slate-mid); line-height: 1.75; }
+
+  /* SECTION BASE (for other sections) */
+  section { padding: 6rem 5vw; }
+  .section-kicker { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--green); display: block; }
+  h2 { font-family: var(--font-head); font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 1rem; }
+  .section-intro { font-size: 1rem; color: var(--slate-mid); max-width: 560px; line-height: 1.8; margin-bottom: 3rem; }
 
   /* PROJECTS */
   #work { background: var(--off-white); }
@@ -112,7 +122,7 @@ cat > /home/claude/index.html << 'HTMLEOF'
   .proj.open .proj-arrow { transform: rotate(90deg); color: var(--green); }
 
   .proj-detail { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
-  .proj-detail.open { max-height: 2000px; }
+  .proj-detail.open { max-height: 2400px; }
   .proj-detail-inner { padding: 0 1.75rem 2rem; border-top: 1px solid var(--border); }
   .why { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.75; font-style: italic; padding: 1.25rem 0 1.5rem; }
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
@@ -121,28 +131,76 @@ cat > /home/claude/index.html << 'HTMLEOF'
   .step h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
   .step p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
 
-  /* Result section — two cols: breakdown diagram left, text right */
-  .result-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
-  .result-diagram { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
-  .result-diagram-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; }
-  /* The visual breakdown graphic */
-  .breakdown { display: flex; flex-direction: column; gap: 0.75rem; }
+  /* Result block for proj1 — text only, good spacing */
+  .result-block { background: var(--green); border-radius: 4px; padding: 1.5rem 1.75rem; color: #fff; }
+  .result-block .result-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.6rem; }
+  .result-block p { font-size: 0.88rem; line-height: 1.8; }
+
+  /* Problem breakdown diagram — used in proj2 */
+  .breakdown-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .breakdown-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+  .breakdown-card-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.25rem; }
+  .breakdown { display: flex; flex-direction: column; gap: 0.85rem; }
   .breakdown-row { display: flex; align-items: center; gap: 0.75rem; }
-  .breakdown-label { font-size: 0.78rem; font-weight: 500; color: var(--slate-mid); width: 130px; flex-shrink: 0; }
-  .breakdown-bar-wrap { flex: 1; height: 28px; background: var(--surface); border-radius: 3px; overflow: hidden; position: relative; }
-  .breakdown-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; padding: 0 0.75rem; font-size: 0.72rem; font-weight: 600; color: #fff; white-space: nowrap; transition: width 0.8s ease; }
-  .bar-green { background: var(--green); }
+  .breakdown-label { font-size: 0.78rem; font-weight: 500; color: var(--slate-mid); width: 130px; flex-shrink: 0; line-height: 1.3; }
+  .breakdown-bar-wrap { flex: 1; height: 26px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+  .breakdown-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; padding: 0 0.65rem; font-size: 0.7rem; font-weight: 600; color: #fff; white-space: nowrap; transition: width 0.9s ease; }
   .bar-teal { background: var(--teal); }
-  .bar-green-soft { background: var(--green-mid); }
+  .bar-teal-soft { background: #5BAFC2; }
   .bar-slate { background: var(--slate-mid); }
+  .bar-slate-soft { background: var(--slate-soft); }
 
-  .result-text { background: var(--green); border-radius: 4px; padding: 1.5rem; color: #fff; }
-  .result-text strong { font-weight: 700; display: block; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
-  .result-text p { font-size: 0.88rem; line-height: 1.75; }
+  .before-after { display: flex; flex-direction: column; gap: 0.75rem; }
+  .ba-row { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .ba-pill { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+  .ba-before { background: var(--surface); color: var(--slate-mid); border: 1px solid var(--border-mid); }
+  .ba-after { background: var(--teal-light); color: var(--teal); border: 1px solid #9AD4DF; }
+  .ba-text { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.6; }
 
-  /* Result for project 2 — full width */
-  .result-bar { padding: 1.1rem 1.4rem; background: var(--teal); color: #fff; border-radius: 3px; font-size: 0.88rem; line-height: 1.7; }
+  .result-bar { background: var(--teal); border-radius: 4px; padding: 1.25rem 1.5rem; color: #fff; font-size: 0.88rem; line-height: 1.75; }
   .result-bar strong { font-weight: 700; }
+
+  /* Problem Breakdown Diagram */
+  .pbd { margin-bottom: 1.5rem; font-family: var(--font-body); }
+  .pbd-row { display: flex; gap: 0; align-items: stretch; }
+  .pbd-side-label {
+    width: 80px; flex-shrink: 0;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--slate-mid); line-height: 1.4;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 1rem; text-align: right;
+    border-right: 2px solid var(--border-mid);
+  }
+  .pbd-content { flex: 1; padding: 0.5rem 0 0.5rem 1.5rem; }
+  .pbd-box {
+    border-radius: 6px; padding: 0.9rem 1rem;
+    font-size: 0.82rem; line-height: 1.55; text-align: center;
+  }
+  .pbd-box-dark { background: var(--slate); color: #fff; font-weight: 500; }
+  .pbd-box-dashed { background: transparent; border: 1.5px dashed var(--slate-mid); color: var(--slate-mid); }
+  .pbd-box-light { background: var(--off-white); border: 1px solid var(--border-mid); color: var(--slate-mid); }
+  .pbd-ineff-head { font-weight: 700; font-size: 0.9rem; }
+  .pbd-center { max-width: 380px; margin: 0 auto; }
+  .pbd-three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .pbd-four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+
+  /* Connector rows */
+  .pbd-connector-row { display: flex; }
+  .pbd-connector-wrap { position: relative; display: flex; flex-direction: column; align-items: center; padding: 0 0 0 1.5rem; }
+  .pbd-vline-down { width: 2px; height: 10px; background: var(--border-mid); }
+  .pbd-hline { height: 2px; background: var(--border-mid); width: 66%; }
+  .pbd-hline-wide { width: 88%; }
+  .pbd-three-downs { display: grid; grid-template-columns: repeat(3, 1fr); width: 66%; }
+  .pbd-four-downs { display: grid; grid-template-columns: repeat(4, 1fr); width: 88%; }
+  .pbd-vdown { height: 10px; border-left: 2px solid var(--border-mid); margin: 0 auto; }
+  .pbd-connector-row-sm { }
+  .pbd-vdown-sm { height: 8px; border-left: 2px solid var(--border-mid); margin: 0 auto; }
+  @media (max-width: 700px) {
+    .pbd-three-col, .pbd-four-col { grid-template-columns: 1fr 1fr; }
+    .pbd-side-label { width: 52px; font-size: 0.65rem; }
+    .pbd-content { padding-left: 0.75rem; }
+    .pbd-hline, .pbd-three-downs, .pbd-four-downs, .pbd-hline-wide { display: none; }
+  }
 
   /* TIMELINE */
   #timeline { background: var(--surface); }
@@ -174,7 +232,7 @@ cat > /home/claude/index.html << 'HTMLEOF'
   .contact-links { display: flex; flex-direction: column; gap: 1rem; }
   .contact-link { display: flex; align-items: center; gap: 1.1rem; padding: 1.1rem 1.25rem; background: rgba(247,247,245,0.06); border: 1px solid rgba(247,247,245,0.12); border-radius: 3px; text-decoration: none; color: var(--off-white); transition: all 0.2s; }
   .contact-link:hover { background: rgba(247,247,245,0.1); border-color: rgba(247,247,245,0.25); transform: translateX(3px); }
-  .contact-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(61,140,110,0.2); border: 1px solid rgba(61,140,110,0.35); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--green-mid); }
+  .contact-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(46,158,114,0.2); border: 1px solid rgba(46,158,114,0.4); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--green-mid); }
   .contact-link h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.1rem; }
   .contact-link p { font-size: 0.8rem; color: rgba(164,176,184,0.7); }
   .contact-note { padding: 2rem; border: 1px solid rgba(247,247,245,0.12); border-radius: 3px; }
@@ -191,12 +249,13 @@ cat > /home/claude/index.html << 'HTMLEOF'
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    #hero { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero-photo-col { justify-content: flex-start; }
+    #intro { grid-template-columns: 1fr; gap: 3rem; min-height: unset; padding-bottom: 5rem; }
+    .intro-left { position: static; }
+    .hero-photo-frame { max-width: 200px; }
     .tl-grid { grid-template-columns: 1fr; gap: 3rem; }
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     .steps { grid-template-columns: 1fr; }
-    .result-section { grid-template-columns: 1fr; }
+    .breakdown-section { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
   }
@@ -213,9 +272,9 @@ cat > /home/claude/index.html << 'HTMLEOF'
 <body>
 
 <nav>
-  <a href="#hero" class="nav-logo">Erika Singh</a>
+  <a href="#intro" class="nav-logo">Erika Singh</a>
   <ul class="nav-links">
-    <li><a href="#about">How I Think</a></li>
+    <li><a href="#intro">About</a></li>
     <li><a href="#work">Projects</a></li>
     <li><a href="#timeline">My Path</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -227,15 +286,15 @@ cat > /home/claude/index.html << 'HTMLEOF'
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="#about" class="mobile-link">How I Think</a>
+  <a href="#intro" class="mobile-link">About</a>
   <a href="#work" class="mobile-link">Projects</a>
   <a href="#timeline" class="mobile-link">My Path</a>
   <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
-<!-- HERO -->
-<section id="hero">
-  <div>
+<!-- INTRO: hero + how I think merged -->
+<section id="intro">
+  <div class="intro-left">
     <div class="hero-kicker">Commerce &amp; Strategy · Queen's University</div>
     <h1>Hi! I'm Erika</h1>
     <p class="hero-body">Across every role, one thing has stayed constant: I love understanding people and creating work that resonates with them.</p>
@@ -243,44 +302,36 @@ cat > /home/claude/index.html << 'HTMLEOF'
       <a href="#work" class="btn btn-primary">See my work</a>
       <a href="#contact" class="btn btn-outline">Contact me</a>
     </div>
-    <div class="hero-tagline">
-      Started with radio. Learned consulting. Applied data. Always came back to people.
-    </div>
-  </div>
-  <div class="hero-photo-col">
     <div class="hero-photo-frame">
+      <!-- Replace with: <img src="your-photo.jpg" alt="Erika Singh"> -->
       <div class="initials-circle">ES</div>
       <span class="photo-hint">Add your photo here</span>
     </div>
   </div>
-</section>
-
-<!-- HOW I THINK — ABOUT (pillars only, no repeat quote, no skills) -->
-<section id="about">
-  <div class="fade-up">
-    <div class="section-kicker">About Me</div>
-    <h2>How I Think</h2>
-  </div>
-  <div class="pillars fade-up">
-    <div class="pillar">
-      <div class="pillar-num">01</div>
-      <div>
-        <h3>Started with understanding people</h3>
-        <p>Two years as a campus radio host taught me how to capture attention and understand what actually resonates.</p>
+  <div class="intro-right">
+    <div class="intro-right-label">About Me</div>
+    <div class="intro-right-heading">How I Think</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div>
+          <h3>Started with understanding people</h3>
+          <p>Two years as a campus radio host taught me how to capture attention and understand what actually resonates.</p>
+        </div>
       </div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">02</div>
-      <div>
-        <h3>Learned to bring structure to problems</h3>
-        <p>Consulting taught me to listen deeply and turn ideas into value.</p>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div>
+          <h3>Learned to bring structure to problems</h3>
+          <p>Consulting taught me to listen deeply and turn ideas into value.</p>
+        </div>
       </div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">03</div>
-      <div>
-        <h3>Applied data to understand behaviour</h3>
-        <p>At Queen's University and RBC, I used both qualitative and quantitative data to understand user behaviour and support better decisions.</p>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div>
+          <h3>Applied data to understand behaviour</h3>
+          <p>At Queen's University and RBC, I used both qualitative and quantitative data to understand user behaviour and support better decisions.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -329,47 +380,13 @@ cat > /home/claude/index.html << 'HTMLEOF'
               <p>I realized the challenge was twofold: people needed to understand AI, and people needed to see how to use it. So I split the workshop into two sections: education and application.</p>
             </div>
           </div>
-
-          <!-- Problem breakdown diagram + results side by side -->
-          <div class="result-section">
-            <div class="result-diagram">
-              <div class="result-diagram-title">Where AI could make the most impact</div>
-              <div class="breakdown" id="breakdown1">
-                <div class="breakdown-row">
-                  <div class="breakdown-label">Synthetic Data</div>
-                  <div class="breakdown-bar-wrap">
-                    <div class="breakdown-bar bar-green" style="width:0%" data-w="88%">High Impact</div>
-                  </div>
-                </div>
-                <div class="breakdown-row">
-                  <div class="breakdown-label">Persona Bank</div>
-                  <div class="breakdown-bar-wrap">
-                    <div class="breakdown-bar bar-teal" style="width:0%" data-w="78%">High Impact</div>
-                  </div>
-                </div>
-                <div class="breakdown-row">
-                  <div class="breakdown-label">Content Review</div>
-                  <div class="breakdown-bar-wrap">
-                    <div class="breakdown-bar bar-green-soft" style="width:0%" data-w="60%">Medium</div>
-                  </div>
-                </div>
-                <div class="breakdown-row">
-                  <div class="breakdown-label">Reporting</div>
-                  <div class="breakdown-bar-wrap">
-                    <div class="breakdown-bar bar-slate" style="width:0%" data-w="45%">Medium</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="result-text">
-              <strong>Results</strong>
-              <p>Heavy technical topics such as neural networks were broken down into sub parts that were easy to understand using metaphors and visuals.<br/><br/>
-              Highlight 1: Synthetic data — using synthetic data to enable testing and modelling without exposing sensitive information.<br/><br/>
-              Highlight 2: Persona-based engagement — building a "persona bank" to simulate audience reactions. For example, modelling how a specific alumni profile might respond to content to improve engagement strategies.<br/><br/>
-              This work contributed to the formation of an AI task force within the department, focused on developing practical applications of AI.</p>
-            </div>
+          <div class="result-block">
+            <div class="result-label">Results</div>
+            <p>Heavy technical topics such as neural networks were broken down into sub parts that were easy to understand using metaphors and visuals.<br/><br/>
+            Highlight 1: Synthetic data — using synthetic data to enable testing and modelling without exposing sensitive information.<br/><br/>
+            Highlight 2: Persona-based engagement — building a "persona bank" to simulate audience reactions. For example, modelling how a specific alumni profile might respond to content to improve engagement strategies.<br/><br/>
+            This work contributed to the formation of an AI task force within the department, focused on developing practical applications of AI.</p>
           </div>
-
         </div>
       </div>
     </div>
@@ -409,6 +426,92 @@ cat > /home/claude/index.html << 'HTMLEOF'
               <p>The model also supported decisions beyond marketing, including identifying popular genres, optimizing scheduling, and improving resource planning.</p>
             </div>
           </div>
+
+          <!-- Problem breakdown diagram — faithful recreation of original -->
+          <div class="pbd">
+            <!-- Problem Statement -->
+            <div class="pbd-row pbd-row-top">
+              <div class="pbd-side-label">Problem<br/>Statement</div>
+              <div class="pbd-content">
+                <div class="pbd-box pbd-box-dark pbd-center">
+                  The Screening Room faces the challenge of increasing repeat customers in a competitive entertainment market dominated by large cinema chains and streaming services.
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector line -->
+            <div class="pbd-connector-row">
+              <div class="pbd-side-label"></div>
+              <div class="pbd-content pbd-connector-wrap">
+                <div class="pbd-vline-down"></div>
+                <div class="pbd-hline"></div>
+                <div class="pbd-three-downs">
+                  <div class="pbd-vdown"></div>
+                  <div class="pbd-vdown"></div>
+                  <div class="pbd-vdown"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Core Issues -->
+            <div class="pbd-row">
+              <div class="pbd-side-label">Core<br/>Issues</div>
+              <div class="pbd-content pbd-three-col">
+                <div class="pbd-box pbd-box-dashed">Difficulty in identifying factors influencing customer loyalty and repeat visits</div>
+                <div class="pbd-box pbd-box-dashed">Pressure from larger cinema chains and the increasing popularity of streaming services</div>
+                <div class="pbd-box pbd-box-dashed">Potential inaccuracies and incompleteness in the available data including external factors influencing customer behavior</div>
+              </div>
+            </div>
+
+            <!-- Connector line -->
+            <div class="pbd-connector-row">
+              <div class="pbd-side-label"></div>
+              <div class="pbd-content pbd-connector-wrap">
+                <div class="pbd-vline-down"></div>
+                <div class="pbd-hline pbd-hline-wide"></div>
+                <div class="pbd-four-downs">
+                  <div class="pbd-vdown"></div>
+                  <div class="pbd-vdown"></div>
+                  <div class="pbd-vdown"></div>
+                  <div class="pbd-vdown"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inefficiencies header boxes -->
+            <div class="pbd-row">
+              <div class="pbd-side-label">Inefficiencies<br/>to solve</div>
+              <div class="pbd-content pbd-four-col">
+                <div class="pbd-box pbd-box-dark pbd-ineff-head">Marketing Budget Spend</div>
+                <div class="pbd-box pbd-box-dark pbd-ineff-head">Customer Experience</div>
+                <div class="pbd-box pbd-box-dark pbd-ineff-head">Targeted Promotions</div>
+                <div class="pbd-box pbd-box-dark pbd-ineff-head">Optimized Movie Selection</div>
+              </div>
+            </div>
+
+            <!-- Small connector lines to detail boxes -->
+            <div class="pbd-connector-row pbd-connector-row-sm">
+              <div class="pbd-side-label"></div>
+              <div class="pbd-content pbd-four-col">
+                <div class="pbd-vdown-sm"></div>
+                <div class="pbd-vdown-sm"></div>
+                <div class="pbd-vdown-sm"></div>
+                <div class="pbd-vdown-sm"></div>
+              </div>
+            </div>
+
+            <!-- Inefficiencies detail boxes -->
+            <div class="pbd-row">
+              <div class="pbd-side-label"></div>
+              <div class="pbd-content pbd-four-col">
+                <div class="pbd-box pbd-box-light">Targeted marketing efforts reduce wasted advertising spend on customers unlikely to return</div>
+                <div class="pbd-box pbd-box-light">Understanding customer preferences allows for customized movie recommendations and incentives, enhancing satisfaction</div>
+                <div class="pbd-box pbd-box-light">Customized promotions can draw customers back to The Screening Room despite competition from streaming services and larger cinema chain</div>
+                <div class="pbd-box pbd-box-light">The model can inform decisions about which genres and types of films to screen, maximizing audience engagement</div>
+              </div>
+            </div>
+          </div>
+
           <div class="result-bar">
             <strong>Results:</strong> The project demonstrated that targeted retention strategies could significantly improve efficiency, with projections showing positive ROI within five months of implementation.
           </div>
@@ -514,7 +617,7 @@ cat > /home/claude/index.html << 'HTMLEOF'
       </a>
     </div>
     <div class="contact-note">
-      <p>Across every role, one thing has stayed constant: I love understanding people and creating work that resonates with them.</p>
+      <p>I'd love to chat about data, strategy, or anything in between. Always happy to connect.</p>
       <a href="mailto:erika.singh42@gmail.com" class="btn btn-primary">Say hello</a>
     </div>
   </div>
@@ -539,20 +642,16 @@ cat > /home/claude/index.html << 'HTMLEOF'
     const isOpen = proj.classList.contains('open');
     document.querySelectorAll('.proj').forEach(p => p.classList.remove('open'));
     document.querySelectorAll('.proj-detail').forEach(d => d.classList.remove('open'));
+    // Reset bars
+    document.querySelectorAll('#breakdown2 .breakdown-bar').forEach(b => b.style.width = '0%');
     if (!isOpen) {
       proj.classList.add('open');
       detail.classList.add('open');
-      // Animate bars when proj1 opens
-      if (id === 'proj1') {
+      if (id === 'proj2') {
         setTimeout(() => {
-          document.querySelectorAll('#breakdown1 .breakdown-bar').forEach(bar => {
-            bar.style.width = bar.dataset.w;
-          });
+          document.querySelectorAll('#breakdown2 .breakdown-bar').forEach(b => b.style.width = b.dataset.w);
         }, 150);
       }
-    } else {
-      // Reset bars when closed
-      document.querySelectorAll('#breakdown1 .breakdown-bar').forEach(bar => { bar.style.width = '0%'; });
     }
   }
 
