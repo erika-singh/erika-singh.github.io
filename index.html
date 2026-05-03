@@ -21,7 +21,7 @@
     --blue-light: #D6E8F5;
     --blue-mid: #6DAAD4;
     --blue-dark: #0F3D66;
-    --blue-nav: #EAF2F9;
+    --blue-nav: #6DAAD4;
     /* Accent blue */
     --accent: #2471A3;
     --accent-light: #D0E8F4;
@@ -99,7 +99,7 @@
   .photo-hint { font-size: 0.75rem; color: var(--slate-soft); }
   .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; width: 100%; }
 
-  .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1.6rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.7rem 1.6rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none; width: 100%; }
   .btn-primary { background: var(--blue); color: #fff; }
   .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
   .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border-mid); }
@@ -341,7 +341,7 @@
       </div>
       <div class="proj-detail" id="proj1-detail">
         <div class="proj-detail-inner">
-          <p class="why">Why I did this: I noticed a growing interest in AI across teams, also a gap in understanding how it could be applied meaningfully in daily work. Most conversations stayed either too technical or too vague to be actionable, and most people were unsure about the legalities and privacy implications of using AI.</p>
+          <p class="why">Why I did this: I noticed a growing interest in AI across teams, but also a gap in understanding how it could be applied meaningfully in daily work. Most conversations stayed either too technical or too vague to be actionable, and most people were unsure about the legalities and privacy implications of using AI.</p>
           <div class="steps">
             <div class="step">
               <div class="step-label">Step 1</div>
@@ -436,7 +436,7 @@
               </div>
             </div>
             <div class="pbd-row">
-              <div class="pbd-side-label">Inefficiencies<br/>to solve</div>
+              <div class="pbd-side-label">Bottlenecks</div>
               <div class="pbd-content pbd-four-col">
                 <div class="pbd-box pbd-box-dark pbd-ineff-head">Marketing Budget Spend</div>
                 <div class="pbd-box pbd-box-dark pbd-ineff-head">Customer Experience</div>
@@ -465,7 +465,7 @@
             <div class="step">
               <div class="step-label">Building the model</div>
               <h4>What I built</h4>
-              <p>I developed a classification model to predict whether a customer would return, using behavioral and demographic data. This enabled segmentation based on return likelihood, allowing the business to move from broad campaigns to targeted outreach.</p>
+              <p>I trained an AWS Linear learner model using a dataset (which I one-hot encoded and did hyperparameter tuning) to develop a classification model to predict whether a customer would return, using behavioral and demographic data. This enabled segmentation based on return likelihood, allowing the business to move from broad campaigns to targeted outreach.</p>
             </div>
             <div class="step">
               <div class="step-label">From insight to action</div>
