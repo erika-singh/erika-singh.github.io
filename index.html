@@ -1,3 +1,4 @@
+cat > /home/claude/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +17,12 @@
     --slate: #3D4A52;
     --slate-mid: #6B7A84;
     --slate-soft: #A4B0B8;
-    --sage: #7A9E8E;
-    --sage-light: #E8F0EC;
-    --sage-mid: #B8D0C6;
+    --green: #3D8C6E;
+    --green-light: #DCF0E8;
+    --green-mid: #8FCBB5;
+    --green-dark: #276650;
+    --teal: #2C8FA0;
+    --teal-light: #D8F0F4;
     --ink: #1C2426;
     --border: rgba(60,74,82,0.12);
     --border-mid: rgba(60,74,82,0.22);
@@ -28,130 +32,67 @@
   }
 
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-body);
-    background: var(--off-white);
-    color: var(--ink);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+  body { font-family: var(--font-body); background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
 
   /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: var(--nav-h);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5vw;
-    background: rgba(247,247,245,0.94);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: var(--font-head);
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.01em;
-    color: var(--ink); text-decoration: none;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; background: rgba(247,247,245,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em;
-    text-transform: uppercase; color: var(--slate-mid); text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--sage); }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--slate-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
   .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; cursor: pointer; }
-  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); }
 
   /* MOBILE MENU */
-  .mobile-menu {
-    display: none; position: fixed; inset: 0; z-index: 99;
-    background: var(--off-white);
-    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
-  }
+  .mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: var(--off-white); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--ink); text-decoration: none; transition: color 0.2s; }
-  .mobile-menu a:hover { color: var(--sage); }
+  .mobile-menu a { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+  .mobile-menu a:hover { color: var(--green); }
   .mobile-close { position: absolute; top: 1.2rem; right: 5vw; background: none; border: none; font-size: 1.4rem; color: var(--ink); cursor: pointer; }
 
-  /* HERO */
+  /* HERO — two cols: text left, photo right, no extra gutters */
   #hero {
     min-height: 100svh;
     padding: calc(var(--nav-h) + 8vh) 5vw 8vh;
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
     background: var(--off-white);
   }
-  .hero-kicker {
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--sage);
-    margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.8rem;
-  }
-  .hero-kicker::before { content: ''; width: 28px; height: 1px; background: var(--sage); display: block; }
-  h1 {
-    font-family: var(--font-head);
-    font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 700;
-    line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.75rem;
-  }
+  .hero-kicker { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--green); margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.8rem; }
+  .hero-kicker::before { content: ''; width: 28px; height: 1px; background: var(--green); display: block; }
+  h1 { font-family: var(--font-head); font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.75rem; }
   .hero-body { font-size: 1rem; color: var(--slate-mid); max-width: 480px; line-height: 1.8; margin-bottom: 2.5rem; }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.7rem 1.6rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
-    letter-spacing: 0.03em; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none;
-  }
-  .btn-primary { background: var(--sage); color: #fff; }
-  .btn-primary:hover { background: #5F876F; transform: translateY(-1px); }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .hero-tagline { font-size: 0.88rem; color: var(--slate-mid); line-height: 1.75; max-width: 400px; padding: 1.1rem 1.25rem; background: var(--green-light); border-left: 2px solid var(--green); border-radius: 0 3px 3px 0; }
+
+  .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1.6rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--green); color: #fff; }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
   .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border-mid); }
   .btn-outline:hover { border-color: var(--slate); }
 
-  .hero-right { display: flex; flex-direction: column; gap: 1.5rem; }
-  .hero-photo-frame {
-    width: 100%; max-width: 340px; aspect-ratio: 4/5; border-radius: 4px;
-    overflow: hidden; background: var(--surface); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem;
-  }
-  .initials-circle {
-    width: 80px; height: 80px; border-radius: 50%;
-    background: var(--sage-light); border: 1px solid var(--sage-mid);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--slate);
-  }
+  .hero-photo-col { display: flex; align-items: center; justify-content: center; }
+  .hero-photo-frame { width: 280px; aspect-ratio: 3/4; border-radius: 6px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem; }
+  .initials-circle { width: 80px; height: 80px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-mid); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--green-dark); }
   .photo-hint { font-size: 0.75rem; color: var(--slate-soft); }
-  .hero-tagline {
-    font-size: 0.88rem; color: var(--slate-mid); line-height: 1.75; max-width: 300px;
-    padding: 1.25rem; background: var(--surface);
-    border-left: 2px solid var(--sage); border-radius: 0 3px 3px 0;
-  }
 
   /* SECTION BASE */
-  section { padding: 7rem 5vw; }
-  .section-kicker {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--sage);
-    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;
-  }
-  .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--sage); display: block; }
-  h2 {
-    font-family: var(--font-head);
-    font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 700;
-    line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 1rem;
-  }
-  .section-intro { font-size: 1rem; color: var(--slate-mid); max-width: 560px; line-height: 1.8; margin-bottom: 3.5rem; }
+  section { padding: 6rem 5vw; }
+  .section-kicker { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--green); display: block; }
+  h2 { font-family: var(--font-head); font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 1rem; }
+  .section-intro { font-size: 1rem; color: var(--slate-mid); max-width: 560px; line-height: 1.8; margin-bottom: 3rem; }
 
-  /* ABOUT */
+  /* ABOUT — pillars only, no side card */
   #about { background: var(--surface); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .pillars { display: flex; flex-direction: column; }
+  .pillars { display: flex; flex-direction: column; max-width: 680px; }
   .pillar { display: grid; grid-template-columns: 36px 1fr; gap: 1.25rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
   .pillar:last-child { border-bottom: none; }
-  .pillar-num { font-family: var(--font-head); font-size: 0.78rem; font-weight: 600; color: var(--sage); padding-top: 2px; }
+  .pillar-num { font-family: var(--font-head); font-size: 0.78rem; font-weight: 600; color: var(--green); padding-top: 2px; }
   .pillar h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--ink); }
   .pillar p { font-size: 0.9rem; color: var(--slate-mid); line-height: 1.75; }
-
-  .about-side { position: sticky; top: calc(var(--nav-h) + 2rem); display: flex; flex-direction: column; gap: 1.5rem; }
-  .constant-card { padding: 1.75rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; }
-  .constant-card p { font-size: 0.95rem; color: var(--slate-mid); line-height: 1.8; }
-  .constant-card strong { color: var(--ink); font-weight: 500; }
-  .skills-wrap { padding: 1.5rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; }
-  .skills-wrap p { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-soft); margin-bottom: 1rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; background: var(--sage-light); color: var(--slate); border: 1px solid var(--sage-mid); border-radius: 2px; }
 
   /* PROJECTS */
   #work { background: var(--off-white); }
@@ -164,23 +105,44 @@
   .proj-summary { padding: 1.75rem; }
   .proj-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
   .proj-badge { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.2rem 0.65rem; border-radius: 2px; }
-  .badge-ai { background: var(--sage-light); color: var(--slate); border: 1px solid var(--sage-mid); }
-  .badge-data { background: #EAF0F4; color: var(--slate); border: 1px solid #C4D4DC; }
+  .badge-ai { background: var(--green-light); color: var(--green-dark); border: 1px solid var(--green-mid); }
+  .badge-data { background: var(--teal-light); color: var(--teal); border: 1px solid #9AD4DF; }
   .proj-desc { font-size: 0.88rem; color: var(--slate-mid); line-height: 1.7; max-width: 580px; }
   .proj-arrow { padding: 1.75rem 1rem; display: flex; align-items: flex-start; justify-content: center; color: var(--slate-soft); font-size: 1rem; transition: transform 0.3s, color 0.2s; }
-  .proj.open .proj-arrow { transform: rotate(90deg); color: var(--sage); }
+  .proj.open .proj-arrow { transform: rotate(90deg); color: var(--green); }
 
-  .proj-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-  .proj-detail.open { max-height: 1400px; }
-  .proj-detail-inner { padding: 0 1.75rem 1.75rem; border-top: 1px solid var(--border); }
+  .proj-detail { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
+  .proj-detail.open { max-height: 2000px; }
+  .proj-detail-inner { padding: 0 1.75rem 2rem; border-top: 1px solid var(--border); }
   .why { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.75; font-style: italic; padding: 1.25rem 0 1.5rem; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
   .step { padding: 1.25rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; }
-  .step-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+  .step-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
   .step h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
   .step p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
-  .result-bar { padding: 1.1rem 1.4rem; background: var(--slate); color: rgba(247,247,245,0.88); border-radius: 3px; font-size: 0.88rem; line-height: 1.7; }
-  .result-bar strong { color: #fff; font-weight: 600; }
+
+  /* Result section — two cols: breakdown diagram left, text right */
+  .result-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  .result-diagram { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+  .result-diagram-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; }
+  /* The visual breakdown graphic */
+  .breakdown { display: flex; flex-direction: column; gap: 0.75rem; }
+  .breakdown-row { display: flex; align-items: center; gap: 0.75rem; }
+  .breakdown-label { font-size: 0.78rem; font-weight: 500; color: var(--slate-mid); width: 130px; flex-shrink: 0; }
+  .breakdown-bar-wrap { flex: 1; height: 28px; background: var(--surface); border-radius: 3px; overflow: hidden; position: relative; }
+  .breakdown-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; padding: 0 0.75rem; font-size: 0.72rem; font-weight: 600; color: #fff; white-space: nowrap; transition: width 0.8s ease; }
+  .bar-green { background: var(--green); }
+  .bar-teal { background: var(--teal); }
+  .bar-green-soft { background: var(--green-mid); }
+  .bar-slate { background: var(--slate-mid); }
+
+  .result-text { background: var(--green); border-radius: 4px; padding: 1.5rem; color: #fff; }
+  .result-text strong { font-weight: 700; display: block; margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
+  .result-text p { font-size: 0.88rem; line-height: 1.75; }
+
+  /* Result for project 2 — full width */
+  .result-bar { padding: 1.1rem 1.4rem; background: var(--teal); color: #fff; border-radius: 3px; font-size: 0.88rem; line-height: 1.7; }
+  .result-bar strong { font-weight: 700; }
 
   /* TIMELINE */
   #timeline { background: var(--surface); }
@@ -191,7 +153,7 @@
   .tl-item:last-child { border-bottom: none; }
   .tl-year { font-size: 0.75rem; font-weight: 500; color: var(--slate-soft); padding-top: 3px; line-height: 1.4; }
   .tl-content h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
-  .tl-org { font-size: 0.82rem; color: var(--sage); font-weight: 500; margin-bottom: 0.3rem; }
+  .tl-org { font-size: 0.82rem; color: var(--green); font-weight: 500; margin-bottom: 0.3rem; }
   .tl-content p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
   .beyond { display: flex; flex-direction: column; gap: 1rem; }
   .beyond-item { padding: 1.25rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; }
@@ -200,24 +162,19 @@
   .along { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.6rem; }
   .along-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-soft); margin-bottom: 0.25rem; display: block; }
   .along-item { display: flex; gap: 0.75rem; font-size: 0.85rem; color: var(--slate-mid); align-items: flex-start; }
-  .along-item::before { content: '—'; color: var(--sage); font-weight: 600; flex-shrink: 0; }
+  .along-item::before { content: '—'; color: var(--green); font-weight: 600; flex-shrink: 0; }
 
   /* CONTACT */
-  #contact { background: var(--slate); padding: 7rem 5vw; }
-  #contact .section-kicker { color: var(--sage-mid); }
-  #contact .section-kicker::before { background: var(--sage-mid); }
+  #contact { background: var(--slate); padding: 6rem 5vw; }
+  #contact .section-kicker { color: var(--green-mid); }
+  #contact .section-kicker::before { background: var(--green-mid); }
   #contact h2 { color: var(--off-white); }
   #contact .section-intro { color: rgba(164,176,184,0.85); }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-link {
-    display: flex; align-items: center; gap: 1.1rem;
-    padding: 1.1rem 1.25rem; background: rgba(247,247,245,0.06);
-    border: 1px solid rgba(247,247,245,0.12); border-radius: 3px;
-    text-decoration: none; color: var(--off-white); transition: all 0.2s;
-  }
+  .contact-link { display: flex; align-items: center; gap: 1.1rem; padding: 1.1rem 1.25rem; background: rgba(247,247,245,0.06); border: 1px solid rgba(247,247,245,0.12); border-radius: 3px; text-decoration: none; color: var(--off-white); transition: all 0.2s; }
   .contact-link:hover { background: rgba(247,247,245,0.1); border-color: rgba(247,247,245,0.25); transform: translateX(3px); }
-  .contact-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(122,158,142,0.2); border: 1px solid rgba(122,158,142,0.35); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--sage-mid); }
+  .contact-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(61,140,110,0.2); border: 1px solid rgba(61,140,110,0.35); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--green-mid); }
   .contact-link h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.1rem; }
   .contact-link p { font-size: 0.8rem; color: rgba(164,176,184,0.7); }
   .contact-note { padding: 2rem; border: 1px solid rgba(247,247,245,0.12); border-radius: 3px; }
@@ -234,21 +191,22 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    #hero { grid-template-columns: 1fr; gap: 3rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-side { position: static; }
+    #hero { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-photo-col { justify-content: flex-start; }
     .tl-grid { grid-template-columns: 1fr; gap: 3rem; }
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     .steps { grid-template-columns: 1fr; }
+    .result-section { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
   }
   @media (max-width: 580px) {
-    section { padding: 5rem 5vw; }
-    #contact { padding: 5rem 5vw; }
+    section { padding: 4.5rem 5vw; }
+    #contact { padding: 4.5rem 5vw; }
     .proj-header { grid-template-columns: 52px 1fr 36px; }
     .proj-num { padding: 1.4rem 0.75rem; }
     .tl-item { grid-template-columns: 62px 1fr; }
+    .breakdown-label { width: 90px; font-size: 0.72rem; }
   }
 </style>
 </head>
@@ -285,62 +243,44 @@
       <a href="#work" class="btn btn-primary">See my work</a>
       <a href="#contact" class="btn btn-outline">Contact me</a>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-photo-frame">
-      <div class="initials-circle">ES</div>
-      <span class="photo-hint">Add your photo here</span>
-    </div>
     <div class="hero-tagline">
       Started with radio. Learned consulting. Applied data. Always came back to people.
     </div>
   </div>
+  <div class="hero-photo-col">
+    <div class="hero-photo-frame">
+      <div class="initials-circle">ES</div>
+      <span class="photo-hint">Add your photo here</span>
+    </div>
+  </div>
 </section>
 
-<!-- HOW I THINK — ABOUT -->
+<!-- HOW I THINK — ABOUT (pillars only, no repeat quote, no skills) -->
 <section id="about">
   <div class="fade-up">
     <div class="section-kicker">About Me</div>
     <h2>How I Think</h2>
   </div>
-  <div class="about-grid fade-up">
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-num">01</div>
-        <div>
-          <h3>Started with understanding people</h3>
-          <p>Two years as a campus radio host taught me how to capture attention and understand what actually resonates.</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">02</div>
-        <div>
-          <h3>Learned to bring structure to problems</h3>
-          <p>Consulting taught me to listen deeply and turn ideas into value.</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">03</div>
-        <div>
-          <h3>Applied data to understand behaviour</h3>
-          <p>At Queen's University and RBC, I used both qualitative and quantitative data to understand user behaviour and support better decisions.</p>
-        </div>
+  <div class="pillars fade-up">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div>
+        <h3>Started with understanding people</h3>
+        <p>Two years as a campus radio host taught me how to capture attention and understand what actually resonates.</p>
       </div>
     </div>
-    <div class="about-side">
-      <div class="constant-card">
-        <p><strong>Across every role, one thing has stayed constant:</strong> I love understanding people and creating work that resonates with them.</p>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div>
+        <h3>Learned to bring structure to problems</h3>
+        <p>Consulting taught me to listen deeply and turn ideas into value.</p>
       </div>
-      <div class="skills-wrap">
-        <p>Skills</p>
-        <div class="tags">
-          <span class="tag">Translating Complexity</span>
-          <span class="tag">Clear Communication</span>
-          <span class="tag">Presentation</span>
-          <span class="tag">Data-Driven Decision Making</span>
-          <span class="tag">Customer Insights</span>
-          <span class="tag">Strategy</span>
-        </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div>
+        <h3>Applied data to understand behaviour</h3>
+        <p>At Queen's University and RBC, I used both qualitative and quantitative data to understand user behaviour and support better decisions.</p>
       </div>
     </div>
   </div>
@@ -354,6 +294,7 @@
   </div>
   <div class="projects fade-up">
 
+    <!-- 001 AI Workshop -->
     <div class="proj" id="proj1">
       <div class="proj-header" onclick="toggleProj('proj1')">
         <div class="proj-num">001</div>
@@ -388,13 +329,52 @@
               <p>I realized the challenge was twofold: people needed to understand AI, and people needed to see how to use it. So I split the workshop into two sections: education and application.</p>
             </div>
           </div>
-          <div class="result-bar">
-            <strong>Results:</strong> Heavy technical topics such as neural networks were broken down into sub parts that were easy to understand using metaphors and visuals. I found 4 areas where AI could make the most impact. Highlight 1: Synthetic data — using synthetic data to enable testing and modelling without exposing sensitive information. Highlight 2: Persona-based engagement — building a "persona bank" to simulate audience reactions. For example, modelling how a specific alumni profile might respond to content to improve engagement strategies. This work contributed to the formation of an AI task force within the department, focused on developing practical applications of AI.
+
+          <!-- Problem breakdown diagram + results side by side -->
+          <div class="result-section">
+            <div class="result-diagram">
+              <div class="result-diagram-title">Where AI could make the most impact</div>
+              <div class="breakdown" id="breakdown1">
+                <div class="breakdown-row">
+                  <div class="breakdown-label">Synthetic Data</div>
+                  <div class="breakdown-bar-wrap">
+                    <div class="breakdown-bar bar-green" style="width:0%" data-w="88%">High Impact</div>
+                  </div>
+                </div>
+                <div class="breakdown-row">
+                  <div class="breakdown-label">Persona Bank</div>
+                  <div class="breakdown-bar-wrap">
+                    <div class="breakdown-bar bar-teal" style="width:0%" data-w="78%">High Impact</div>
+                  </div>
+                </div>
+                <div class="breakdown-row">
+                  <div class="breakdown-label">Content Review</div>
+                  <div class="breakdown-bar-wrap">
+                    <div class="breakdown-bar bar-green-soft" style="width:0%" data-w="60%">Medium</div>
+                  </div>
+                </div>
+                <div class="breakdown-row">
+                  <div class="breakdown-label">Reporting</div>
+                  <div class="breakdown-bar-wrap">
+                    <div class="breakdown-bar bar-slate" style="width:0%" data-w="45%">Medium</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="result-text">
+              <strong>Results</strong>
+              <p>Heavy technical topics such as neural networks were broken down into sub parts that were easy to understand using metaphors and visuals.<br/><br/>
+              Highlight 1: Synthetic data — using synthetic data to enable testing and modelling without exposing sensitive information.<br/><br/>
+              Highlight 2: Persona-based engagement — building a "persona bank" to simulate audience reactions. For example, modelling how a specific alumni profile might respond to content to improve engagement strategies.<br/><br/>
+              This work contributed to the formation of an AI task force within the department, focused on developing practical applications of AI.</p>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
 
+    <!-- 002 Customer Retention -->
     <div class="proj" id="proj2">
       <div class="proj-header" onclick="toggleProj('proj2')">
         <div class="proj-num">002</div>
@@ -522,24 +502,15 @@
     <div class="contact-links">
       <a href="mailto:erika.singh42@gmail.com" class="contact-link">
         <div class="contact-icon">✉</div>
-        <div>
-          <h4>Email</h4>
-          <p>erika.singh42@gmail.com</p>
-        </div>
+        <div><h4>Email</h4><p>erika.singh42@gmail.com</p></div>
       </a>
       <a href="https://www.linkedin.com/in/singherika/" target="_blank" rel="noopener" class="contact-link">
         <div class="contact-icon">in</div>
-        <div>
-          <h4>LinkedIn</h4>
-          <p>linkedin.com/in/singherika</p>
-        </div>
+        <div><h4>LinkedIn</h4><p>linkedin.com/in/singherika</p></div>
       </a>
       <a href="#" class="contact-link" onclick="alert('Resume PDF coming soon!'); return false;">
         <div class="contact-icon">↓</div>
-        <div>
-          <h4>Download Resume</h4>
-          <p>PDF · 2025</p>
-        </div>
+        <div><h4>Download Resume</h4><p>PDF · 2025</p></div>
       </a>
     </div>
     <div class="contact-note">
@@ -568,7 +539,21 @@
     const isOpen = proj.classList.contains('open');
     document.querySelectorAll('.proj').forEach(p => p.classList.remove('open'));
     document.querySelectorAll('.proj-detail').forEach(d => d.classList.remove('open'));
-    if (!isOpen) { proj.classList.add('open'); detail.classList.add('open'); }
+    if (!isOpen) {
+      proj.classList.add('open');
+      detail.classList.add('open');
+      // Animate bars when proj1 opens
+      if (id === 'proj1') {
+        setTimeout(() => {
+          document.querySelectorAll('#breakdown1 .breakdown-bar').forEach(bar => {
+            bar.style.width = bar.dataset.w;
+          });
+        }, 150);
+      }
+    } else {
+      // Reset bars when closed
+      document.querySelectorAll('#breakdown1 .breakdown-bar').forEach(bar => { bar.style.width = '0%'; });
+    }
   }
 
   const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
