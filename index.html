@@ -1,1113 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Erika Singh</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hi! I'm Erika</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-   --cream: #030303;
---dark: #FFFFFF;
---soft-grey: #D9DEDC;
-
---blue: #5F91DE;
---blue-deep: #1554C5;
-
---pink: #E050B3;
---pink-light: #F3B5DB;
---pink-deep: #B8228B;
-
---green: #66B98F;
---green-light: #8BD4AD;
---green-deep: #2F7253;
-
---text-muted: rgba(255,255,255,0.72);
---border: rgba(255,255,255,0.22);
+    --off-white: #F7F7F5;
+    --surface: #EEECEA;
+    --slate: #3D4A52;
+    --slate-mid: #6B7A84;
+    --slate-soft: #A4B0B8;
+    --sage: #7A9E8E;
+    --sage-light: #E8F0EC;
+    --sage-mid: #B8D0C6;
+    --ink: #1C2426;
+    --border: rgba(60,74,82,0.12);
+    --border-mid: rgba(60,74,82,0.22);
+    --nav-h: 60px;
+    --font-head: 'Syne', system-ui, sans-serif;
+    --font-body: 'Instrument Sans', system-ui, sans-serif;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
+    font-family: var(--font-body);
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.6;
     overflow-x: hidden;
   }
 
   /* NAV */
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 3rem;
-    background: rgba(245,242,235,0.92);
-    backdrop-filter: blur(8px);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    background: rgba(247,247,245,0.94);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
-
-  nav .logo {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--dark);
-    text-decoration: none;
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.01em;
+    color: var(--ink); text-decoration: none;
   }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2.5rem;
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--slate-mid); text-decoration: none; transition: color 0.2s;
   }
+  .nav-links a:hover { color: var(--sage); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; cursor: pointer; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
 
-  nav ul a {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  nav ul a:hover { color: var(--dark); }
-
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-  }
-
-  .nav-toggle span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--dark);
-    transition: all 0.3s;
-    border-radius: 2px;
-  }
-
+  /* MOBILE MENU */
   .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-    z-index: 99;
-    padding: 1.5rem 2rem;
-    flex-direction: column;
-    gap: 1.2rem;
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--off-white);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
   }
-
   .mobile-menu.open { display: flex; }
-
-  .mobile-menu a {
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    text-decoration: none;
-  }
+  .mobile-menu a { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--ink); text-decoration: none; transition: color 0.2s; }
+  .mobile-menu a:hover { color: var(--sage); }
+  .mobile-close { position: absolute; top: 1.2rem; right: 5vw; background: none; border: none; font-size: 1.4rem; color: var(--ink); cursor: pointer; }
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 70px;
+  #hero {
+    min-height: 100svh;
+    padding: calc(var(--nav-h) + 8vh) 5vw 8vh;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center;
+    background: var(--off-white);
   }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 3rem 4rem 3rem;
+  .hero-kicker {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--sage);
+    margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.8rem;
   }
-
-  .hero-tag {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--pink-deep);
-    margin-bottom: 1.5rem;
+  .hero-kicker::before { content: ''; width: 28px; height: 1px; background: var(--sage); display: block; }
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.75rem;
   }
-
-  .hero h1 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-weight: 700;
-    line-height: 1.0;
-    margin-bottom: 2.5rem;
-    color: var(--dark);
+  .hero-body { font-size: 1rem; color: var(--slate-mid); max-width: 480px; line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.7rem 1.6rem; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.03em; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none;
   }
+  .btn-primary { background: var(--sage); color: #fff; }
+  .btn-primary:hover { background: #5F876F; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border-mid); }
+  .btn-outline:hover { border-color: var(--slate); }
 
-  .hero-journey {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+  .hero-right { display: flex; flex-direction: column; gap: 1.5rem; }
+  .hero-photo-frame {
+    width: 100%; max-width: 340px; aspect-ratio: 4/5; border-radius: 4px;
+    overflow: hidden; background: var(--surface); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem;
   }
-
-  .journey-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
+  .initials-circle {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--sage-light); border: 1px solid var(--sage-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--slate);
   }
-
-  .journey-num {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--pink-deep);
-    margin-top: 0.15rem;
-    min-width: 20px;
-    letter-spacing: 0.05em;
-  }
-
-  .journey-item h3 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
-    font-style: italic;
-  }
-
-  .journey-item p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    font-weight: 300;
-  }
-
+  .photo-hint { font-size: 0.75rem; color: var(--slate-soft); }
   .hero-tagline {
-    font-size: 0.9rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--dark);
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    max-width: 360px;
-  }
-
-  .hero-tagline strong {
-    font-weight: 500;
-  }
-
-  .hero-right {
-    position: relative;
-    background: radial-gradient(circle at 20% 20%, #F3B5DB 0%, #E050B3 40%, #B8228B 100%);
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
-  .hero-blob {
-    position: absolute;
-    border-radius: 50%;
-  }
-
-  .blob-1 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle,#5F91DE 0%,#1554C5 70%);
-    top: -60px;
-    right: -80px;
-    opacity: 0.6;
-    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-  }
-
-  .blob-2 {
-    width: 280px;
-    height: 280px;
-    background: radial-gradient(circle,#8BD4AD 0%,#66B98F 55%,#2F7253 100%);
-    bottom: 50px;
-    left: -50px;
-    opacity: 0.5;
-    border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
-  }
-
-  .polaroid-grid {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 3rem 2rem 2rem;
-    width: 100%;
-  }
-
-  .polaroid {
-    background: #fff;
-    padding: 10px 10px 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    transform: rotate(-2deg);
-    transition: transform 0.3s;
-  }
-
-  .polaroid:nth-child(even) { transform: rotate(1.5deg); margin-top: 20px; }
-  .polaroid:hover,
-.polaroid:nth-child(even):hover {
-  transform: rotate(0deg) scale(1.04) translateY(-6px) !important;
-}
-
-  .polaroid-img {
-    width: 100%;
-    aspect-ratio: 1;
-    background: var(--cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .polaroid-img svg { width: 60%; height: 60%; opacity: 0.3; }
-
-  .polaroid-label {
-    text-align: center;
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    margin-top: 8px;
-    font-style: italic;
-    letter-spacing: 0.05em;
-  }
-
-  /* HOVER SECTION */
-  .hover-section {
-    padding: 5rem 3rem;
-    background: var(--dark);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hover-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(196,96,122,0.15) 0%, transparent 70%);
-  }
-
-  .hover-section h2 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
-    color: var(--cream);
-    position: relative;
-    z-index: 1;
-    margin-bottom: 3rem;
-    font-style: italic;
-  }
-
-  .skills-reveal {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .skill-pill {
-    padding: 0.7rem 1.5rem;
-    border: 1px solid rgba(245,242,235,0.2);
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cream);
-    cursor: default;
-    transition: all 0.3s;
-    opacity: 0.5;
-  }
-
-  .skill-pill:hover {
-    opacity: 1;
-    background: var(--pink-deep);
-    border-color: var(--pink-deep);
-  }
-
-  /* SELECTED WORK */
-  .selected-work {
-    padding: 6rem 3rem;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .section-header h2 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 700;
-  }
-
-  .section-header .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .work-card {
-    border: 1px solid var(--border);
-    background: #fff;
-    padding: 2.5rem;
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-
-  .work-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  }
-
-  .work-num {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    color: var(--pink-deep);
-    margin-bottom: 1.2rem;
-  }
-
-  .work-card h3 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: 1.3rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-  }
-
-  .work-card p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .skill-tag {
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    background: var(--cream);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    color: var(--text-muted);
-  }
-
-  .work-card.pink-accent { border-top: 3px solid var(--pink-deep); }
-  .work-card.teal-accent { border-top: 3px solid var(--teal); }
-
-  /* CASE STUDY DEEP DIVES */
-  .case-studies {
-    padding: 4rem 3rem 6rem;
-    background: #fff;
-  }
-
-  .case-study {
-    max-width: 900px;
-    margin: 0 auto 6rem;
-  }
-
-  .case-study:last-child { margin-bottom: 0; }
-
-  .case-num-large {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--pink-deep);
-    margin-bottom: 0.8rem;
-  }
-
-  .case-study h2 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .case-study > p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 660px;
-    margin-bottom: 3rem;
-  }
-
-  .case-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 4rem 0;
-  }
-
-  .workshop-highlights {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .highlight-card {
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-  }
-
-  .highlight-card h4 {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--pink-deep);
-    margin-bottom: 0.8rem;
-  }
-
-  .highlight-card .analogy-block {
-    background: var(--cream);
-    padding: 1rem;
-    font-size: 0.82rem;
-    line-height: 1.65;
-    color: var(--dark);
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  .highlight-card .use-cases {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .use-case-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.5;
-  }
-
-  .use-case-dot {
-    width: 5px;
-    height: 5px;
-    background: var(--teal);
-    border-radius: 50%;
-    margin-top: 0.45rem;
-    flex-shrink: 0;
-  }
-
-  /* Analytics case study */
-  .analytics-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .analytics-block {
-    padding: 1.5rem;
-    border: 1px solid var(--border);
-  }
-
-  .analytics-block h4 {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 0.8rem;
-  }
-
-  .analytics-block p {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  .before-after {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .ba-card {
-    padding: 1.5rem;
-    text-align: center;
-  }
-
-  .ba-card.before {
-    background: #fafafa;
-    border: 1px solid var(--border);
-  }
-
-  .ba-card.after {
-    background: var(--teal);
-    color: #fff;
-  }
-
-  .ba-card .ba-label {
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-    opacity: 0.7;
-  }
-
-  .ba-card p {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  /* CAREER SECTION */
-  .career {
-    padding: 6rem 3rem;
-    background: var(--cream);
-  }
-
-  .career-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .career-journey {
-    display: flex;
-    flex-direction: column;
-    gap: 1.8rem;
-  }
-
-  .cj-item h3 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    font-style: italic;
-  }
-
-  .cj-item p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.5;
-  }
-
-  .cj-item {
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--border);
-    transition: border-color 0.2s;
-  }
-
-  .cj-item:hover { border-color: var(--pink-deep); }
-
-  .chart-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .donut-container {
-    position: relative;
-    width: 220px;
-    height: 220px;
-  }
-
-  .donut-container svg { width: 100%; height: 100%; }
-
-  .donut-center {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .donut-center span:first-child {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .donut-center span:last-child {
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  .legend {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem 1.5rem;
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  .legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+    font-size: 0.88rem; color: var(--slate-mid); line-height: 1.75; max-width: 300px;
+    padding: 1.25rem; background: var(--surface);
+    border-left: 2px solid var(--sage); border-radius: 0 3px 3px 0;
+  }
+
+  /* SECTION BASE */
+  section { padding: 7rem 5vw; }
+  .section-kicker {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--sage);
+    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--sage); display: block; }
+  h2 {
+    font-family: var(--font-head);
+    font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-intro { font-size: 1rem; color: var(--slate-mid); max-width: 560px; line-height: 1.8; margin-bottom: 3.5rem; }
+
+  /* ABOUT */
+  #about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .pillars { display: flex; flex-direction: column; }
+  .pillar { display: grid; grid-template-columns: 36px 1fr; gap: 1.25rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); }
+  .pillar:last-child { border-bottom: none; }
+  .pillar-num { font-family: var(--font-head); font-size: 0.78rem; font-weight: 600; color: var(--sage); padding-top: 2px; }
+  .pillar h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--ink); }
+  .pillar p { font-size: 0.9rem; color: var(--slate-mid); line-height: 1.75; }
+
+  .about-side { position: sticky; top: calc(var(--nav-h) + 2rem); display: flex; flex-direction: column; gap: 1.5rem; }
+  .constant-card { padding: 1.75rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; }
+  .constant-card p { font-size: 0.95rem; color: var(--slate-mid); line-height: 1.8; }
+  .constant-card strong { color: var(--ink); font-weight: 500; }
+  .skills-wrap { padding: 1.5rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; }
+  .skills-wrap p { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-soft); margin-bottom: 1rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; background: var(--sage-light); color: var(--slate); border: 1px solid var(--sage-mid); border-radius: 2px; }
+
+  /* PROJECTS */
+  #work { background: var(--off-white); }
+  .projects { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .proj { background: var(--off-white); cursor: pointer; transition: background 0.15s; }
+  .proj:hover { background: var(--surface); }
+  .proj.open { background: var(--surface); }
+  .proj-header { display: grid; grid-template-columns: 72px 1fr 40px; align-items: start; }
+  .proj-num { font-family: var(--font-head); font-size: 0.78rem; font-weight: 600; color: var(--slate-soft); padding: 1.75rem 1.25rem; border-right: 1px solid var(--border); }
+  .proj-summary { padding: 1.75rem; }
+  .proj-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .proj-badge { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.2rem 0.65rem; border-radius: 2px; }
+  .badge-ai { background: var(--sage-light); color: var(--slate); border: 1px solid var(--sage-mid); }
+  .badge-data { background: #EAF0F4; color: var(--slate); border: 1px solid #C4D4DC; }
+  .proj-desc { font-size: 0.88rem; color: var(--slate-mid); line-height: 1.7; max-width: 580px; }
+  .proj-arrow { padding: 1.75rem 1rem; display: flex; align-items: flex-start; justify-content: center; color: var(--slate-soft); font-size: 1rem; transition: transform 0.3s, color 0.2s; }
+  .proj.open .proj-arrow { transform: rotate(90deg); color: var(--sage); }
+
+  .proj-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+  .proj-detail.open { max-height: 1400px; }
+  .proj-detail-inner { padding: 0 1.75rem 1.75rem; border-top: 1px solid var(--border); }
+  .why { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.75; font-style: italic; padding: 1.25rem 0 1.5rem; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+  .step { padding: 1.25rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; }
+  .step-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+  .step h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .step p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
+  .result-bar { padding: 1.1rem 1.4rem; background: var(--slate); color: rgba(247,247,245,0.88); border-radius: 3px; font-size: 0.88rem; line-height: 1.7; }
+  .result-bar strong { color: #fff; font-weight: 600; }
+
+  /* TIMELINE */
+  #timeline { background: var(--surface); }
+  .tl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .tl-col-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-soft); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); display: block; }
+  .tl-items { display: flex; flex-direction: column; }
+  .tl-item { display: grid; grid-template-columns: 80px 1fr; gap: 1rem; padding: 1.4rem 0; border-bottom: 1px solid var(--border); }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-year { font-size: 0.75rem; font-weight: 500; color: var(--slate-soft); padding-top: 3px; line-height: 1.4; }
+  .tl-content h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .tl-org { font-size: 0.82rem; color: var(--sage); font-weight: 500; margin-bottom: 0.3rem; }
+  .tl-content p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
+  .beyond { display: flex; flex-direction: column; gap: 1rem; }
+  .beyond-item { padding: 1.25rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; }
+  .beyond-item h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .beyond-item p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
+  .along { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.6rem; }
+  .along-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-soft); margin-bottom: 0.25rem; display: block; }
+  .along-item { display: flex; gap: 0.75rem; font-size: 0.85rem; color: var(--slate-mid); align-items: flex-start; }
+  .along-item::before { content: '—'; color: var(--sage); font-weight: 600; flex-shrink: 0; }
 
   /* CONTACT */
-  .contact {
-    background: var(--dark);
-    padding: 7rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  #contact { background: var(--slate); padding: 7rem 5vw; }
+  #contact .section-kicker { color: var(--sage-mid); }
+  #contact .section-kicker::before { background: var(--sage-mid); }
+  #contact h2 { color: var(--off-white); }
+  #contact .section-intro { color: rgba(164,176,184,0.85); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1.1rem;
+    padding: 1.1rem 1.25rem; background: rgba(247,247,245,0.06);
+    border: 1px solid rgba(247,247,245,0.12); border-radius: 3px;
+    text-decoration: none; color: var(--off-white); transition: all 0.2s;
   }
+  .contact-link:hover { background: rgba(247,247,245,0.1); border-color: rgba(247,247,245,0.25); transform: translateX(3px); }
+  .contact-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(122,158,142,0.2); border: 1px solid rgba(122,158,142,0.35); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--sage-mid); }
+  .contact-link h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.1rem; }
+  .contact-link p { font-size: 0.8rem; color: rgba(164,176,184,0.7); }
+  .contact-note { padding: 2rem; border: 1px solid rgba(247,247,245,0.12); border-radius: 3px; }
+  .contact-note p { font-size: 0.9rem; color: rgba(164,176,184,0.8); line-height: 1.8; margin-bottom: 1.25rem; }
 
-  .contact::before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: var(--pink-deep);
-    border-radius: 50%;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.12;
-  }
+  /* FOOTER */
+  footer { background: var(--slate); border-top: 1px solid rgba(247,247,245,0.08); padding: 1.75rem 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+  .footer-name { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; color: var(--off-white); }
+  .footer-copy { font-size: 0.75rem; color: rgba(164,176,184,0.5); }
 
-  .contact h2 {
-    font-family: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 700;
-    color: var(--cream);
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 1;
-    font-style: italic;
-  }
-
-  .contact p {
-    font-size: 0.95rem;
-    color: rgba(245,242,235,0.6);
-    font-weight: 300;
-    margin-bottom: 3rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .contact-links {
-    display: flex;
-    gap: 1.2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
-  }
-
-  .contact-btn {
-    padding: 0.9rem 2.2rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 100px;
-    transition: all 0.3s;
-    cursor: pointer;
-    border: none;
-  }
-
-  .contact-btn.primary {
-    background: var(--pink-deep);
-    color: #fff;
-  }
-
-  .contact-btn.primary:hover { background: var(--pink); color: var(--dark); }
-
-  .contact-btn.secondary {
-    background: transparent;
-    color: var(--cream);
-    border: 1px solid rgba(245,242,235,0.3);
-  }
-
-  .contact-btn.secondary:hover {
-    background: rgba(245,242,235,0.1);
-  }
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    nav ul { display: none; }
-    .nav-toggle { display: flex; }
-
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { min-height: 50vh; }
-    .hero-left { padding: 3rem 1.5rem; }
-
-    .hover-section { padding: 4rem 1.5rem; }
-
-    .selected-work { padding: 4rem 1.5rem; }
-    .work-grid { grid-template-columns: 1fr; }
-
-    .case-studies { padding: 3rem 1.5rem 5rem; }
-    .workshop-highlights { grid-template-columns: 1fr; }
-    .analytics-grid { grid-template-columns: 1fr; }
-
-    .career { padding: 4rem 1.5rem; }
-    .career-grid { grid-template-columns: 1fr; gap: 3rem; }
-
-    .contact { padding: 5rem 1.5rem; }
+    #hero { grid-template-columns: 1fr; gap: 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-side { position: static; }
+    .tl-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .steps { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
   }
-
-  @media (max-width: 480px) {
-    .polaroid-grid { grid-template-columns: 1fr 1fr; padding: 2rem 1rem; }
-    .before-after { grid-template-columns: 1fr; }
-    .section-header { margin-bottom: 2.5rem; }
-    .work-card { padding: 1.5rem; }
-    .analytics-block { padding: 1rem; }
+  @media (max-width: 580px) {
+    section { padding: 5rem 5vw; }
+    #contact { padding: 5rem 5vw; }
+    .proj-header { grid-template-columns: 52px 1fr 36px; }
+    .proj-num { padding: 1.4rem 0.75rem; }
+    .tl-item { grid-template-columns: 62px 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="logo">Erika Singh</a>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
+  <a href="#hero" class="nav-logo">Erika Singh</a>
+  <ul class="nav-links">
+    <li><a href="#about">How I Think</a></li>
     <li><a href="#work">Projects</a></li>
-    <li><a href="#career">Career Info</a></li>
+    <li><a href="#timeline">My Path</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#home" onclick="closeMobile()">Home</a>
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#work" onclick="closeMobile()">Projects</a>
-  <a href="#career" onclick="closeMobile()">Career Info</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" class="mobile-link">How I Think</a>
+  <a href="#work" class="mobile-link">Projects</a>
+  <a href="#timeline" class="mobile-link">My Path</a>
+  <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-left">
-    <p class="hero-tag">Product & Strategy</p>
-    <h1>Erika<br>Singh</h1>
-    <div class="hero-journey">
-      <div class="journey-item">
-        <span class="journey-num">01</span>
+<section id="hero">
+  <div>
+    <div class="hero-kicker">Commerce &amp; Strategy · Queen's University</div>
+    <h1>Hi! I'm Erika</h1>
+    <p class="hero-body">Across every role, one thing has stayed constant: I love understanding people and creating work that resonates with them.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-primary">See my work</a>
+      <a href="#contact" class="btn btn-outline">Contact me</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <div class="initials-circle">ES</div>
+      <span class="photo-hint">Add your photo here</span>
+    </div>
+    <div class="hero-tagline">
+      Started with radio. Learned consulting. Applied data. Always came back to people.
+    </div>
+  </div>
+</section>
+
+<!-- HOW I THINK — ABOUT -->
+<section id="about">
+  <div class="fade-up">
+    <div class="section-kicker">About Me</div>
+    <h2>How I Think</h2>
+  </div>
+  <div class="about-grid fade-up">
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
         <div>
-          <h3>Started with storytelling</h3>
-          <p>Campus radio host for two years, learning how to capture attention.</p>
+          <h3>Started with understanding people</h3>
+          <p>Two years as a campus radio host taught me how to capture attention and understand what actually resonates.</p>
         </div>
       </div>
-      <div class="journey-item">
-        <span class="journey-num">02</span>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
         <div>
-          <h3>Learned to solve problems</h3>
+          <h3>Learned to bring structure to problems</h3>
           <p>Consulting taught me to listen deeply and turn ideas into value.</p>
         </div>
       </div>
-      <div class="journey-item">
-        <span class="journey-num">03</span>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
         <div>
-          <h3>Now building digitally</h3>
-          <p>At RBC, I translated user needs into products with impact.</p>
+          <h3>Applied data to understand behaviour</h3>
+          <p>At Queen's University and RBC, I used both qualitative and quantitative data to understand user behaviour and support better decisions.</p>
         </div>
       </div>
     </div>
-    <p class="hero-tagline">Across every role, one thing has stayed constant: I love <strong>understanding people</strong> and creating work that resonates with them.</p>
-  </div>
-
-  <div class="hero-right" id="about">
-    <div class="blob-1 hero-blob"></div>
-    <div class="blob-2 hero-blob"></div>
-    <div class="polaroid-grid">
-      <div class="polaroid">
-        <div class="polaroid-img">
-          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="22" r="12" fill="#C4607A" opacity="0.4"/><path d="M10 52c0-11 8-18 20-18s20 7 20 18" fill="#C4607A" opacity="0.3"/></svg>
-        </div>
-        <p class="polaroid-label">campus radio days</p>
+    <div class="about-side">
+      <div class="constant-card">
+        <p><strong>Across every role, one thing has stayed constant:</strong> I love understanding people and creating work that resonates with them.</p>
       </div>
-      <div class="polaroid">
-        <div class="polaroid-img" style="background: var(--teal-light);">
-          <svg viewBox="0 0 60 60" fill="none"><rect x="10" y="18" width="40" height="28" rx="3" fill="#4AAFA0" opacity="0.5"/><line x1="20" y1="28" x2="40" y2="28" stroke="#fff" stroke-width="2"/><line x1="20" y1="35" x2="34" y2="35" stroke="#fff" stroke-width="2"/></svg>
+      <div class="skills-wrap">
+        <p>Skills</p>
+        <div class="tags">
+          <span class="tag">Translating Complexity</span>
+          <span class="tag">Clear Communication</span>
+          <span class="tag">Presentation</span>
+          <span class="tag">Data-Driven Decision Making</span>
+          <span class="tag">Customer Insights</span>
+          <span class="tag">Strategy</span>
         </div>
-        <p class="polaroid-label">consulting era</p>
-      </div>
-      <div class="polaroid" style="transform: rotate(1deg);">
-        <div class="polaroid-img" style="background: var(--purple-light);">
-          <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="12" width="44" height="36" rx="3" fill="#7B6FAA" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="#7B6FAA" opacity="0.5"/></svg>
-        </div>
-        <p class="polaroid-label">building at rbc</p>
-      </div>
-      <div class="polaroid" style="transform: rotate(-1.5deg); margin-top: 16px;">
-        <div class="polaroid-img" style="background: #FDF0E8;">
-          <svg viewBox="0 0 60 60" fill="none"><path d="M30 10 L35 24 L50 24 L38 33 L43 47 L30 38 L17 47 L22 33 L10 24 L25 24 Z" fill="#E8A0B4" opacity="0.6"/></svg>
-        </div>
-        <p class="polaroid-label">what drives me</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOVER / LEARN MORE -->
-<section class="hover-section">
-  <h2>Get to know me</h2>
-  <div class="skills-reveal">
-    <div class="skill-pill">Clear Communication</div>
-    <div class="skill-pill">Translating Complexity</div>
-    <div class="skill-pill">Curiosity & Continuous Learning</div>
-    <div class="skill-pill">Data-Driven Decision Making</div>
-    <div class="skill-pill">Presentation</div>
-    <div class="skill-pill">Customer Insights</div>
-    <div class="skill-pill">Strategy</div>
-    <div class="skill-pill">Business Impact Thinking</div>
+<!-- PROJECTS -->
+<section id="work">
+  <div class="fade-up">
+    <div class="section-kicker">How I Think</div>
+    <h2>Click on each project to learn my approach</h2>
   </div>
-</section>
+  <div class="projects fade-up">
 
-<!-- SELECTED WORK -->
-<section class="selected-work" id="work">
-  <div class="section-header">
-    <h2>Selected Work</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="work-grid">
-    <div class="work-card pink-accent" onclick="document.getElementById('cs1').scrollIntoView({behavior:'smooth'})">
-      <p class="work-num">001</p>
-      <h3>AI Education Workshop</h3>
-      <p>Simplified complex AI concepts into an accessible workshop, securing adoption and presenting to a 20+ person strategic team.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Clear Communication</span>
-        <span class="skill-tag">Translating Complexity</span>
-        <span class="skill-tag">Curiosity & Learning</span>
-        <span class="skill-tag">Presentation</span>
-      </div>
-    </div>
-    <div class="work-card teal-accent" onclick="document.getElementById('cs2').scrollIntoView({behavior:'smooth'})">
-      <p class="work-num">002</p>
-      <h3>Customer Retention Through Predictive Analytics</h3>
-      <p>Built a predictive model to identify high-return customers, enabling targeted marketing and improved ticket sales.</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Data-Driven Decisions</span>
-        <span class="skill-tag">Strategy</span>
-        <span class="skill-tag">Customer Insights</span>
-        <span class="skill-tag">Business Impact</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CASE STUDIES -->
-<section class="case-studies">
-
-  <!-- Case Study 1 -->
-  <div class="case-study" id="cs1">
-    <p class="case-num-large">001</p>
-    <h2>AI Education Workshop</h2>
-    <p>Explored real-world AI use cases and built a workshop to simplify complex concepts for non-technical teams. This workshop was adopted officially and presented by me to a 20+ person strategic engagement team.</p>
-
-    <div class="workshop-highlights">
-      <div class="highlight-card">
-        <h4>How do LLMs work — Locked Room Analogy</h4>
-        <div class="analogy-block">
-          <p>Imagine you're passed a note through a door. You have to write back based only on what you know from reading thousands of books before being locked in. You've never seen anything new since then, and you can't leave to check. That's how an LLM works.</p>
+    <div class="proj" id="proj1">
+      <div class="proj-header" onclick="toggleProj('proj1')">
+        <div class="proj-num">001</div>
+        <div class="proj-summary">
+          <div class="proj-title">
+            AI Education Workshop
+            <span class="proj-badge badge-ai">Clear Communication</span>
+            <span class="proj-badge badge-ai">Translating Complexity</span>
+            <span class="proj-badge badge-ai">Presentation</span>
+          </div>
+          <p class="proj-desc">Simplified complex AI concepts into an accessible workshop, securing adoption and presenting to a 20+ person strategic team.</p>
         </div>
+        <div class="proj-arrow">›</div>
       </div>
-      <div class="highlight-card">
-        <h4>Use Cases — Synthetic Data</h4>
-        <div class="use-cases">
-          <div class="use-case-item"><span class="use-case-dot"></span><span><strong>Data Accountability:</strong> AI can stamp and verify an AI-finished or started a document to confirm it matches a valid format.</span></div>
-          <div class="use-case-item"><span class="use-case-dot"></span><span><strong>Predictive Analytics:</strong> For cases with limited data, AI can generate synthetic data to train models without real examples.</span></div>
-          <div class="use-case-item"><span class="use-case-dot"></span><span><strong>Pattern Sensing:</strong> Detects when a trigger or engagement metric drops 15% of Q3 from Q1 then alerts.</span></div>
-          <div class="use-case-item"><span class="use-case-dot"></span><span><strong>A/B Testing:</strong> AI can create and test multiple campaign versions simultaneously for faster insights.</span></div>
+      <div class="proj-detail" id="proj1-detail">
+        <div class="proj-detail-inner">
+          <p class="why">Why I did this: I noticed a growing interest in AI across teams, also a gap in understanding how it could be applied meaningfully in daily work. Most conversations stayed either too technical or too vague to be actionable, and most people were unsure about the legalities and privacy implications of using AI.</p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-label">Step 1</div>
+              <h4>Built foundational understanding</h4>
+              <p>I started by understanding how large language models actually work. I learnt the technical language first so that I could simplify it for others later.</p>
+            </div>
+            <div class="step">
+              <div class="step-label">Step 2</div>
+              <h4>Identified where AI could create value</h4>
+              <p>Instead of starting with tools, I started with the team's goals and workflows. I broke down how work was currently being done and looked for points where AI could realistically improve efficiency or insight.</p>
+            </div>
+            <div class="step">
+              <div class="step-label">Step 3</div>
+              <h4>Structured the problem into two parts</h4>
+              <p>I realized the challenge was twofold: people needed to understand AI, and people needed to see how to use it. So I split the workshop into two sections: education and application.</p>
+            </div>
+          </div>
+          <div class="result-bar">
+            <strong>Results:</strong> Heavy technical topics such as neural networks were broken down into sub parts that were easy to understand using metaphors and visuals. I found 4 areas where AI could make the most impact. Highlight 1: Synthetic data — using synthetic data to enable testing and modelling without exposing sensitive information. Highlight 2: Persona-based engagement — building a "persona bank" to simulate audience reactions. For example, modelling how a specific alumni profile might respond to content to improve engagement strategies. This work contributed to the formation of an AI task force within the department, focused on developing practical applications of AI.
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="case-divider"></div>
-
-  <!-- Case Study 2 -->
-  <div class="case-study" id="cs2">
-    <p class="case-num-large">002</p>
-    <h2>Customer Retention Through Predictive Analytics</h2>
-    <p>Built a predictive model to identify customers who are most likely to return to a local theatre in Kingston, ON. This model enables insights to enable targeted marketing strategies to improve retention and increase revenue.</p>
-
-    <div class="analytics-grid">
-      <div class="analytics-block">
-        <h4>The Problem</h4>
-        <p>Breaking down the drivers of customer retention to identify where data could create the most impact. This structure guided the development of a predictive model focused on high-return customers and more efficient marketing decisions.</p>
+    <div class="proj" id="proj2">
+      <div class="proj-header" onclick="toggleProj('proj2')">
+        <div class="proj-num">002</div>
+        <div class="proj-summary">
+          <div class="proj-title">
+            Customer Retention Strategy
+            <span class="proj-badge badge-data">Data-Driven Decision Making</span>
+            <span class="proj-badge badge-data">Customer Insights</span>
+            <span class="proj-badge badge-data">Strategy</span>
+          </div>
+          <p class="proj-desc">Identified high potential customers through a predictive analytics model, enabling targeted marketing and improved ticket sales.</p>
+        </div>
+        <div class="proj-arrow">›</div>
       </div>
-      <div class="analytics-block" style="border-top: 3px solid var(--teal);">
-        <h4>What I Built</h4>
-        <p>A classification model to predict whether a customer was likely to return, using behavioral and demographic data. The model enabled segmentation of customers based on return likelihood, allowing for more targeted and efficient decision-making.</p>
-      </div>
-      <div class="analytics-block" style="border-top: 3px solid var(--purple);">
-        <h4>The Outcome</h4>
-        <p>Customer segmentation enabled targeted outreach, improving marketing efficiency and focusing efforts on high-value customers most likely to return and drive revenue growth.</p>
-      </div>
-    </div>
-
-    <div class="before-after" style="margin-top: 2rem;">
-      <div class="ba-card before">
-        <p class="ba-label">Before Model Deployment</p>
-        <p>Promotions were sent broadly to all customers, with limited insight into who was likely to return.</p>
-      </div>
-      <div class="ba-card after">
-        <p class="ba-label">After Model Deployment</p>
-        <p>Customer segmentation enabled targeted outreach, improving marketing efficiency and focusing efforts on high-value customers.</p>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- CAREER -->
-<section class="career" id="career">
-  <div class="section-header">
-    <h2>My Career So Far</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="career-grid">
-    <div class="career-journey">
-      <div class="cj-item">
-        <h3>Started with storytelling</h3>
-        <p>Campus radio host for two years, learning how to capture attention.</p>
-      </div>
-      <div class="cj-item">
-        <h3>Learned to solve problems</h3>
-        <p>Consulting taught me to listen deeply and turn ideas into value.</p>
-      </div>
-      <div class="cj-item">
-        <h3>Now building digitally</h3>
-        <p>At RBC, I translated user needs into products with impact.</p>
-      </div>
-      <p style="font-size:0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; padding-top: 1rem;">Across every role, one thing has stayed constant: I love <em>understanding people</em> and creating work that resonates with them.</p>
-    </div>
-
-    <div class="chart-wrap">
-      <div class="donut-container">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <!-- Higher Education 36.4% -->
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#C5BEDE" stroke-width="30"
-            stroke-dasharray="159.7 279.4" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-          <!-- Media 36.4% -->
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#E8A0B4" stroke-width="30"
-            stroke-dasharray="159.7 279.4" stroke-dashoffset="-159.7" transform="rotate(-90 100 100)"/>
-          <!-- Financial Services 11.4% -->
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#4AAFA0" stroke-width="30"
-            stroke-dasharray="50.1 389" stroke-dashoffset="-319.4" transform="rotate(-90 100 100)"/>
-          <!-- Retail 9.1% -->
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#F2C8D5" stroke-width="30"
-            stroke-dasharray="39.9 399.3" stroke-dashoffset="-369.5" transform="rotate(-90 100 100)"/>
-          <!-- Non Profit 6.8% -->
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#7B6FAA" stroke-width="30"
-            stroke-dasharray="29.8 409.4" stroke-dashoffset="-409.4" transform="rotate(-90 100 100)"/>
-        </svg>
-        <div class="donut-center">
-          <span>5</span>
-          <span>Industries</span>
+      <div class="proj-detail" id="proj2-detail">
+        <div class="proj-detail-inner">
+          <p class="why">Why I did this: A local theatre in Kingston, ON, the Screening Room operates in a highly competitive entertainment market, facing pressure from large cinema chains and streaming platforms. A key challenge was increasing repeat customers without wasting marketing resources on broad, unfocused campaigns. So, I built a model for a class project.</p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-label">Building the model</div>
+              <h4>What I built</h4>
+              <p>I developed a classification model to predict whether a customer would return, using behavioral and demographic data. This enabled segmentation based on return likelihood, allowing the business to move from broad campaigns to targeted outreach.</p>
+            </div>
+            <div class="step">
+              <div class="step-label">From insight to action</div>
+              <h4>Before &amp; After</h4>
+              <p><strong>Before:</strong> Promotions were applied broadly, with limited visibility into which customers were likely to return.<br/><strong>After:</strong> Customer segmentation enabled targeted outreach, focusing efforts on high-value customers and improving marketing efficiency.</p>
+            </div>
+            <div class="step">
+              <div class="step-label">Expanded impact</div>
+              <h4>Beyond marketing</h4>
+              <p>The model also supported decisions beyond marketing, including identifying popular genres, optimizing scheduling, and improving resource planning.</p>
+            </div>
+          </div>
+          <div class="result-bar">
+            <strong>Results:</strong> The project demonstrated that targeted retention strategies could significantly improve efficiency, with projections showing positive ROI within five months of implementation.
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#C5BEDE"></div>Higher Education 36.4%</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#E8A0B4"></div>Media 36.4%</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#4AAFA0"></div>Financial Services 11.4%</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#F2C8D5"></div>Retail 9.1%</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#7B6FAA"></div>Non Profit 6.8%</div>
+  </div>
+</section>
+
+<!-- MY PATH -->
+<section id="timeline">
+  <div class="fade-up">
+    <div class="section-kicker">My Path so far</div>
+    <h2>Experience &amp; Involvement</h2>
+  </div>
+  <div class="tl-grid fade-up">
+    <div>
+      <span class="tl-col-label">Professional &amp; Academic</span>
+      <div class="tl-items">
+        <div class="tl-item">
+          <div class="tl-year">2025</div>
+          <div class="tl-content">
+            <h4>Junior Product Owner</h4>
+            <div class="tl-org">RBC</div>
+            <p>Worked across teams to translate user needs into product decisions for a $20M+ platform.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024 – Present</div>
+          <div class="tl-content">
+            <h4>Digital Engagement Analyst</h4>
+            <div class="tl-org">Queen's University</div>
+            <p>Using data to inform strategy across 450+ digital properties.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024</div>
+          <div class="tl-content">
+            <h4>Consultant</h4>
+            <div class="tl-org">Smith Business Consulting</div>
+            <p>Delivered stakeholder strategy for early-stage biomanufacturing client.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023</div>
+          <div class="tl-content">
+            <h4>Purchasing Coordinator</h4>
+            <div class="tl-org">Food4Kids</div>
+            <p>Managed $20K weekly budget and optimized procurement decisions.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2022 – Present</div>
+          <div class="tl-content">
+            <h4>Bachelor of Commerce</h4>
+            <div class="tl-org">Queen's University</div>
+            <p>Bank of Montreal Scholar · Dean's List</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="tl-col-label">Beyond the Classroom</span>
+      <div class="beyond">
+        <div class="beyond-item">
+          <h4>Print Director — Queen's Women in Leadership (QWIL)</h4>
+          <p>Leading the development and delivery of an annual publication across content and production.</p>
+        </div>
+        <div class="beyond-item">
+          <h4>Digital Director — Queen's Business Review</h4>
+          <p>Owned the website and taught writers how to make their articles more visible using SEO principles.</p>
+        </div>
+      </div>
+      <div class="along">
+        <span class="along-label">Along the Way</span>
+        <div class="along-item">Currently learning guitar</div>
+        <div class="along-item">Practiced archery in school</div>
+        <div class="along-item">Spent two years on campus radio, which is probably why I think a lot about how ideas land</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <h2>Contact Me</h2>
-  <p>Let's connect — I'd love to hear from you.</p>
-  <div class="contact-links">
-    <a href="mailto:erika@example.com" class="contact-btn primary">Send an Email</a>
-    <a href="https://linkedin.com" target="_blank" class="contact-btn secondary">LinkedIn</a>
-    <a href="#" class="contact-btn secondary">Download Resume</a>
+<section id="contact">
+  <div class="section-kicker">Contact Me</div>
+  <h2>Get in touch</h2>
+  <p class="section-intro">I'd love to connect.</p>
+  <div class="contact-grid fade-up">
+    <div class="contact-links">
+      <a href="mailto:erika.singh42@gmail.com" class="contact-link">
+        <div class="contact-icon">✉</div>
+        <div>
+          <h4>Email</h4>
+          <p>erika.singh42@gmail.com</p>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/singherika/" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-icon">in</div>
+        <div>
+          <h4>LinkedIn</h4>
+          <p>linkedin.com/in/singherika</p>
+        </div>
+      </a>
+      <a href="#" class="contact-link" onclick="alert('Resume PDF coming soon!'); return false;">
+        <div class="contact-icon">↓</div>
+        <div>
+          <h4>Download Resume</h4>
+          <p>PDF · 2025</p>
+        </div>
+      </a>
+    </div>
+    <div class="contact-note">
+      <p>Across every role, one thing has stayed constant: I love understanding people and creating work that resonates with them.</p>
+      <a href="mailto:erika.singh42@gmail.com" class="btn btn-primary">Say hello</a>
+    </div>
   </div>
 </section>
 
+<footer>
+  <span class="footer-name">Erika Singh</span>
+  <span class="footer-copy">© 2025</span>
+</footer>
+
 <script>
-  const toggle = document.getElementById('navToggle');
-  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
-  toggle.addEventListener('click', () => {
-    menu.classList.toggle('open');
-  });
-
-  function closeMobile() {
-    menu.classList.remove('open');
+  function toggleProj(id) {
+    const proj = document.getElementById(id);
+    const detail = document.getElementById(id + '-detail');
+    const isOpen = proj.classList.contains('open');
+    document.querySelectorAll('.proj').forEach(p => p.classList.remove('open'));
+    document.querySelectorAll('.proj-detail').forEach(d => d.classList.remove('open'));
+    if (!isOpen) { proj.classList.add('open'); detail.classList.add('open'); }
   }
 
-  document.addEventListener('click', (e) => {
-    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-      menu.classList.remove('open');
-    }
-  });
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
