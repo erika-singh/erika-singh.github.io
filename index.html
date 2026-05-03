@@ -16,13 +16,11 @@
     --slate: #2D3A4A;
     --slate-mid: #4A5668;
     --slate-soft: #7A8A9A;
-    /* Blue — rich, jewel-toned */
     --blue: #1A5C8A;
     --blue-light: #D6E8F5;
     --blue-mid: #6DAAD4;
     --blue-dark: #0F3D66;
     --blue-nav: #F2EAF2;
-    /* Accent blue */
     --accent: #2471A3;
     --accent-light: #D0E8F4;
     --ink: #1C2430;
@@ -34,7 +32,14 @@
   }
 
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); color: var(--ink); line-height: 1.6; overflow-x: hidden;
+  body { font-family: var(--font-body); color: var(--ink); line-height: 1.6; overflow-x: hidden; background: transparent; }
+
+  /* Fixed gradient layer — works on Safari unlike background-attachment:fixed */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background: linear-gradient(180deg,
       #F0E6F0 0%,
       #F5ECF5 12%,
@@ -66,8 +71,8 @@
 
   /* INTRO */
   #intro {
-    min-height: 100vh;
-    padding: calc(var(--nav-h) + 5vh) 5vw 6vh;
+    min-height: unset;
+    padding: calc(var(--nav-h) + 5vh) 5vw 8vh;
     display: grid;
     grid-template-columns: 1fr 320px;
     gap: 5rem;
@@ -86,7 +91,6 @@
   .pillar p { font-size: 0.88rem; color: var(--slate-mid); line-height: 1.7; }
   .hero-body { font-size: 0.95rem; color: var(--slate-mid); line-height: 1.8; max-width: 540px; }
 
-  /* Right col: photo top, buttons below — centred */
   .intro-right { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: calc(var(--nav-h) + 2rem); align-items: center; }
   .hero-photo-frame {
     width: 100%; aspect-ratio: 3/4; border-radius: 6px; overflow: hidden;
@@ -138,7 +142,6 @@
   .step h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
   .step p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
 
-  /* Highlights block */
   .highlights-block { margin-bottom: 1rem; padding: 1.5rem; background: var(--blue-light); border: 1px solid var(--blue-mid); border-radius: 4px; }
   .highlights-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-dark); margin-bottom: 1rem; }
   .highlights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -147,15 +150,15 @@
   .highlight-item p { font-size: 0.82rem; color: var(--slate-mid); line-height: 1.65; }
   @media (max-width: 600px) { .highlights-grid { grid-template-columns: 1fr; } }
 
-  /* Result block */
   .result-block { background: var(--blue); border-radius: 4px; padding: 1.5rem 1.75rem; color: #fff; }
   .result-block .result-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.6rem; }
   .result-block p { font-size: 0.88rem; line-height: 1.8; }
 
   /* Problem breakdown diagram */
-  .pbd { margin-bottom: 1.5rem; font-family: var(--font-body); }
+  .pbd { margin-bottom: 1.5rem; font-family: var(--font-body); overflow-x: auto; }
+  .pbd-inner { min-width: 560px; }
   .pbd-row { display: flex; gap: 0; align-items: stretch; }
-  .pbd-side-label { width: 80px; flex-shrink: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate-mid); line-height: 1.4; display: flex; align-items: center; justify-content: flex-end; padding-right: 1rem; text-align: right; border-right: 2px solid var(--border-mid); }
+  .pbd-side-label { width: 90px; flex-shrink: 0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate-mid); line-height: 1.35; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.85rem; text-align: right; border-right: 2px solid var(--border-mid); word-break: break-word; }
   .pbd-content { flex: 1; padding: 0.5rem 0 0.5rem 1.5rem; }
   .pbd-box { border-radius: 6px; padding: 0.9rem 1rem; font-size: 0.82rem; line-height: 1.55; text-align: center; }
   .pbd-box-dark { background: var(--slate); color: #fff; font-weight: 500; }
@@ -175,10 +178,8 @@
   .pbd-vdown { height: 10px; border-left: 2px solid var(--border-mid); margin: 0 auto; }
   .pbd-vdown-sm { height: 8px; border-left: 2px solid var(--border-mid); margin: 0 auto; }
   @media (max-width: 700px) {
-    .pbd-three-col, .pbd-four-col { grid-template-columns: 1fr 1fr; }
     .pbd-side-label { width: 52px; font-size: 0.65rem; }
     .pbd-content { padding-left: 0.75rem; }
-    .pbd-hline, .pbd-three-downs, .pbd-four-downs, .pbd-hline-wide { display: none; }
   }
 
   .result-bar { background: var(--accent); border-radius: 4px; padding: 1.25rem 1.5rem; color: #fff; font-size: 0.88rem; line-height: 1.75; }
@@ -231,7 +232,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    #intro { grid-template-columns: 1fr; gap: 3rem; min-height: unset; padding-bottom: 5rem; }
+    #intro { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 5rem; }
     .intro-right { position: static; flex-direction: row; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
     .hero-photo-frame { width: 180px; flex-shrink: 0; }
     .hero-ctas { flex-direction: column; }
@@ -398,64 +399,66 @@
           <p class="why">Why I did this: A local theatre in Kingston, ON, the Screening Room operates in a highly competitive entertainment market, facing pressure from large cinema chains and streaming platforms. A key challenge was increasing repeat customers without wasting marketing resources on broad, unfocused campaigns. So, I built a model for a class project.</p>
 
           <div class="pbd">
-            <div class="pbd-row pbd-row-top">
-              <div class="pbd-side-label">Problem<br/>Statement</div>
-              <div class="pbd-content">
-                <div class="pbd-box pbd-box-dark pbd-center">
-                  The Screening Room faces the challenge of increasing repeat customers in a competitive entertainment market dominated by large cinema chains and streaming services.
+            <div class="pbd-inner">
+              <div class="pbd-row pbd-row-top">
+                <div class="pbd-side-label">Problem<br/>Statement</div>
+                <div class="pbd-content">
+                  <div class="pbd-box pbd-box-dark pbd-center">
+                    The Screening Room faces the challenge of increasing repeat customers in a competitive entertainment market dominated by large cinema chains and streaming services.
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="pbd-connector-row">
-              <div class="pbd-side-label"></div>
-              <div class="pbd-content pbd-connector-wrap">
-                <div class="pbd-vline-down"></div>
-                <div class="pbd-hline"></div>
-                <div class="pbd-three-downs">
-                  <div class="pbd-vdown"></div><div class="pbd-vdown"></div><div class="pbd-vdown"></div>
+              <div class="pbd-connector-row">
+                <div class="pbd-side-label"></div>
+                <div class="pbd-content pbd-connector-wrap">
+                  <div class="pbd-vline-down"></div>
+                  <div class="pbd-hline"></div>
+                  <div class="pbd-three-downs">
+                    <div class="pbd-vdown"></div><div class="pbd-vdown"></div><div class="pbd-vdown"></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="pbd-row">
-              <div class="pbd-side-label">Core<br/>Issues</div>
-              <div class="pbd-content pbd-three-col">
-                <div class="pbd-box pbd-box-dashed">Difficulty in identifying factors influencing customer loyalty and repeat visits</div>
-                <div class="pbd-box pbd-box-dashed">Pressure from larger cinema chains and the increasing popularity of streaming services</div>
-                <div class="pbd-box pbd-box-dashed">Potential inaccuracies and incompleteness in the available data including external factors influencing customer behavior</div>
-              </div>
-            </div>
-            <div class="pbd-connector-row">
-              <div class="pbd-side-label"></div>
-              <div class="pbd-content pbd-connector-wrap">
-                <div class="pbd-vline-down"></div>
-                <div class="pbd-hline pbd-hline-wide"></div>
-                <div class="pbd-four-downs">
-                  <div class="pbd-vdown"></div><div class="pbd-vdown"></div><div class="pbd-vdown"></div><div class="pbd-vdown"></div>
+              <div class="pbd-row">
+                <div class="pbd-side-label">Core<br/>Issues</div>
+                <div class="pbd-content pbd-three-col">
+                  <div class="pbd-box pbd-box-dashed">Difficulty in identifying factors influencing customer loyalty and repeat visits</div>
+                  <div class="pbd-box pbd-box-dashed">Pressure from larger cinema chains and the increasing popularity of streaming services</div>
+                  <div class="pbd-box pbd-box-dashed">Potential inaccuracies and incompleteness in the available data including external factors influencing customer behavior</div>
                 </div>
               </div>
-            </div>
-            <div class="pbd-row">
-              <div class="pbd-side-label">Bottlenecks</div>
-              <div class="pbd-content pbd-four-col">
-                <div class="pbd-box pbd-box-dark pbd-ineff-head">Marketing Budget Spend</div>
-                <div class="pbd-box pbd-box-dark pbd-ineff-head">Customer Experience</div>
-                <div class="pbd-box pbd-box-dark pbd-ineff-head">Targeted Promotions</div>
-                <div class="pbd-box pbd-box-dark pbd-ineff-head">Optimized Movie Selection</div>
+              <div class="pbd-connector-row">
+                <div class="pbd-side-label"></div>
+                <div class="pbd-content pbd-connector-wrap">
+                  <div class="pbd-vline-down"></div>
+                  <div class="pbd-hline pbd-hline-wide"></div>
+                  <div class="pbd-four-downs">
+                    <div class="pbd-vdown"></div><div class="pbd-vdown"></div><div class="pbd-vdown"></div><div class="pbd-vdown"></div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="pbd-connector-row pbd-connector-row-sm">
-              <div class="pbd-side-label"></div>
-              <div class="pbd-content pbd-four-col">
-                <div class="pbd-vdown-sm"></div><div class="pbd-vdown-sm"></div><div class="pbd-vdown-sm"></div><div class="pbd-vdown-sm"></div>
+              <div class="pbd-row">
+                <div class="pbd-side-label">Bottlenecks</div>
+                <div class="pbd-content pbd-four-col">
+                  <div class="pbd-box pbd-box-dark pbd-ineff-head">Marketing Budget Spend</div>
+                  <div class="pbd-box pbd-box-dark pbd-ineff-head">Customer Experience</div>
+                  <div class="pbd-box pbd-box-dark pbd-ineff-head">Targeted Promotions</div>
+                  <div class="pbd-box pbd-box-dark pbd-ineff-head">Optimized Movie Selection</div>
+                </div>
               </div>
-            </div>
-            <div class="pbd-row">
-              <div class="pbd-side-label"></div>
-              <div class="pbd-content pbd-four-col">
-                <div class="pbd-box pbd-box-light">Targeted marketing efforts reduce wasted advertising spend on customers unlikely to return</div>
-                <div class="pbd-box pbd-box-light">Understanding customer preferences allows for customized movie recommendations and incentives, enhancing satisfaction</div>
-                <div class="pbd-box pbd-box-light">Customized promotions can draw customers back to The Screening Room despite competition from streaming services and larger cinema chain</div>
-                <div class="pbd-box pbd-box-light">The model can inform decisions about which genres and types of films to screen, maximizing audience engagement</div>
+              <div class="pbd-connector-row pbd-connector-row-sm">
+                <div class="pbd-side-label"></div>
+                <div class="pbd-content pbd-four-col">
+                  <div class="pbd-vdown-sm"></div><div class="pbd-vdown-sm"></div><div class="pbd-vdown-sm"></div><div class="pbd-vdown-sm"></div>
+                </div>
+              </div>
+              <div class="pbd-row">
+                <div class="pbd-side-label"></div>
+                <div class="pbd-content pbd-four-col">
+                  <div class="pbd-box pbd-box-light">Targeted marketing efforts reduce wasted advertising spend on customers unlikely to return</div>
+                  <div class="pbd-box pbd-box-light">Understanding customer preferences allows for customized movie recommendations and incentives, enhancing satisfaction</div>
+                  <div class="pbd-box pbd-box-light">Customized promotions can draw customers back to The Screening Room despite competition from streaming services and larger cinema chain</div>
+                  <div class="pbd-box pbd-box-light">The model can inform decisions about which genres and types of films to screen, maximizing audience engagement</div>
+                </div>
               </div>
             </div>
           </div>
